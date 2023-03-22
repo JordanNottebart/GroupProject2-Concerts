@@ -1,4 +1,5 @@
 ﻿using CENV.UI.Web.Models;
+using CENV_JMH.DO;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,8 +16,46 @@ namespace CENV.UI.Web.Controllers
 
         public IActionResult Index()
         {
-            
-            return View();
+            var x = new List<Showing>()
+            {
+                new Showing()
+                {
+                    Name = "Home",
+                    ShowingID = 1,
+                    TicketPrice = 100
+                },
+                new Showing()
+                {
+                    Name = "Home",
+                    ShowingID = 1,
+                    TicketPrice = 100
+                },
+                new Showing()
+                {
+                    Name = "Home",
+                    ShowingID = 1,
+                    TicketPrice = 100
+                },
+                new Showing()
+                {
+                    Name = "Home",
+                    ShowingID = 1,
+                    TicketPrice = 100
+                },
+                new Showing()
+                {
+                    Name = "Home",
+                    ShowingID = 1,
+                    TicketPrice = 100
+                },
+                new Showing()
+                {
+                    Name = "Home",
+                    ShowingID = 1,
+                    TicketPrice = 100
+                },
+            };
+            return View(x);
         }
 
         public IActionResult Privacy()

@@ -1,8 +1,29 @@
-﻿@{
+﻿@using CENV_JMH.DO;
+@model List<Showing>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .col{
+        border: 1px solid black;
+    }
+</style>
+
+<div style="height:650px">
+    <div class="text-center" style="height: 10%">
+        <h1 class="display-4">Iz like thiz</h1>
+    </div>
+        <div class="container text-center" style="height : 90%">
+        @for(int j =0; j<2; ++j){
+            <div class="row" style="height: 50%">
+                @for (int i =0 ; i<3 ; ++i)
+                {
+                    <div class="col" onclick="location.href='Showing/Index?${@Model[3*j + i]}'" style="cursor: pointer">
+                        @Html.Partial("_IndexPartial", @Model[3 * j + i])
+                    </div>
+                }
+            </div>
+        }
+    </div>
 </div>
