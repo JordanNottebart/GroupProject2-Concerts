@@ -14,8 +14,8 @@ namespace CENV_JMH.DA
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-
-            optionsBuilder.UseSqlServer(@"Data Source=.\sqlexpress;Initial Catalog=CENV_JMH_DB;Integrated Security=True;Trust Server Certificate=True");
+             
+            optionsBuilder.UseSqlServer(@"Server=vdo2023.database.windows.net;Database= kmj;User ID=CloudSA445f05b6;Password=goodluck23!;Trusted_Connection=False;Encrypt=True;");
 
         }
     }
