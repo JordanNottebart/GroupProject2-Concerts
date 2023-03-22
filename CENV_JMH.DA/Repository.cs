@@ -5,10 +5,12 @@ namespace CENV_JMH.DA
 {
     public class Repository : DbContext
     {
+        #region Properties
         public DbSet<Hall> Halls { get; set; }
         public DbSet<Showing> Showings { get; set; }
         public DbSet<ShowingDetail> Details { get; set; }
 
+        #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

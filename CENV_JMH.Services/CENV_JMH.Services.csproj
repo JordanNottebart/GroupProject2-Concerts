@@ -10,4 +10,9 @@
     <PackageReference Include="Autofac" Version="7.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CENV_JMH.DA\CENV_JMH.DA.csproj" />
+    <ProjectReference Include="..\CENV_JMH.DO\CENV_JMH.DO.csproj" />
+  </ItemGroup>
+
 </Project>
