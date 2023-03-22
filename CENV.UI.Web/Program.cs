@@ -1,7 +1,12 @@
+using CENV_JMH.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<HallService>();
+builder.Services.AddTransient<ShowingService>();
+builder.Services.AddTransient<ShowingDetailService>();
 
 var app = builder.Build();
 

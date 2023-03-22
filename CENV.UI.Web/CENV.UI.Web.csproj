@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CENV_JMH.DO\CENV_JMH.DO.csproj" />
+    <ProjectReference Include="..\CENV_JMH.Services\CENV_JMH.Services.csproj" />
+  </ItemGroup>
+
 </Project>

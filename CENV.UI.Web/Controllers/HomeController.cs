@@ -15,6 +15,7 @@ namespace CENV.UI.Web.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
         }
 
