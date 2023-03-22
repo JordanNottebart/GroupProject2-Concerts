@@ -15,7 +15,7 @@ namespace CENV_JMH.DA
         {
             base.OnConfiguring(optionsBuilder);
              
-            optionsBuilder.UseSqlServer(@"Server=vdo2023.database.windows.net;Database= kmj;User ID=CloudSA445f05b6;Password=goodluck23!;Trusted_Connection=False;Encrypt=True;");
+            optionsBuilder.UseSqlServer(@"Data Source = vdo2023.database.windows.net; Initial Catalog = kmj; User ID = CloudSA445f05b6; Password = ***********");
 
         }
     }
