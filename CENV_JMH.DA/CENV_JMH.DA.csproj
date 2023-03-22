@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CENV_JMH.DO\CENV_JMH.DO.csproj" />
   </ItemGroup>
 
 </Project>
