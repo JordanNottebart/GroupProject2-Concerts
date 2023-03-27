@@ -1,0 +1,28 @@
+﻿@model IEnumerable<CENV_JMH.DO.ShowingInstance>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                Places left
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @(item.Hall.MaxNumberOfPlaces - item.SeatsSold)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
