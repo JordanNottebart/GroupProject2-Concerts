@@ -1,5 +1,6 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,28 @@ namespace CENV_JMH.Services
             {
                 repo.Tickets.Add(ticket);
                 repo.SaveChanges();
+            }
+        }
+
+        public void UpdateTicket(Ticket ticket)
+        {
+            using (var repo = new Repository())
+            {
+                repo.Tickets.Attach(ticket);
+
+                var e = repo.ChangeTracker.Entries().FirstOrDefault(c => c.Entity == ticket);
+                e.State = EntityState.Modified;
+
+                repo.SaveChanges();
+            }
+        }
+
+        public void DeleteTicket(int id)
+        {
+            using (var repo = new Repository())
+            {
+
+                repo.Tickets.Remove(GetTicketById(id));
             }
         }
     }
