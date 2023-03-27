@@ -4,61 +4,60 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CENV.UI.Web.Controllers
 {
-    public class AdminShowingsController : Controller
+    public class AdminHallController : Controller
     {
-        public ActionResult Index()
+        public IActionResult Index()
         {
             using (var repo = new Repository())
             {
-                return View(repo.Showings.ToList());
+                return View(repo.Halls.ToList());
             }
         }
 
         public ActionResult Details(int id)
         {
-            Showing model;
+            Hall model;
             using (var repo = new Repository())
             {
-                model = repo.Showings.FirstOrDefault(s => s.ShowingID == id);
+                model = repo.Halls.FirstOrDefault(h => h.HallID == id);
             }
+
             return View(model);
         }
 
-        public ActionResult Create(int id, string name, double ticketPrice, string? picture_URL)
+        public ActionResult Create(int id, string name, int maxNumberOfPlaces)
         {
-            Showing newShow;
+            Hall newHall;
             using (var repo = new Repository())
             {
-                newShow = new Showing();
-                newShow.ShowingID = id;
-                newShow.Name = name;
-                newShow.TicketPrice = ticketPrice;
-                newShow.Picture_URL = picture_URL;
-                repo.Add(newShow);
+                newHall = new Hall();
+                newHall.HallID = id;
+                newHall.Name = name;
+                newHall.MaxNumberOfPlaces = maxNumberOfPlaces;
+                repo.Add(newHall);
 
             }
 
-            return View(newShow);
+            return View(newHall);
         }
 
         public async Task<ActionResult> Edit(int id)
         {
             using (var repo = new Repository())
             {
-                var model = repo.Showings.FirstOrDefault(s => s.ShowingID == id);
+                var model = repo.Halls.FirstOrDefault(h => h.HallID == id);
                 await TryUpdateModelAsync(model);
                 repo.SaveChanges();
                 return View(model);
             }
-
         }
 
         public ActionResult Delete(int id)
         {
             using (var repo = new Repository())
             {
-                var model = repo.Showings.FirstOrDefault(s => s.ShowingID == id);
-                repo.Showings.Remove(model);
+                var model = repo.Halls.FirstOrDefault(h => h.HallID == id);
+                repo.Halls.Remove(model);
                 repo.SaveChanges();
             }
 
