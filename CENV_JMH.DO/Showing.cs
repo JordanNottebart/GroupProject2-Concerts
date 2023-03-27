@@ -15,6 +15,9 @@ namespace CENV_JMH.DO
 
         [Column("Showing_ID")]
         public int ShowingID { get; set; }
+
+        [Column("Picture_URL")]
+        public string Picture_URL { get; set;}
         
     }
 }
