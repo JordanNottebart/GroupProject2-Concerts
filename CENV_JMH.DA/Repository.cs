@@ -10,6 +10,10 @@ namespace CENV_JMH.DA
         public DbSet<Showing> Showings { get; set; }
         public DbSet<ShowingInstance> Details { get; set; }
 
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<User> Users { get; set; }
+
+
         #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
