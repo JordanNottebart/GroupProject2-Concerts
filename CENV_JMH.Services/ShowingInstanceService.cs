@@ -3,9 +3,9 @@ using CENV_JMH.DO;
 
 namespace CENV_JMH.Services
 {
-    public class ShowingDetailService
+    public class ShowingInstanceService
     {
-        public List<ShowingInstance> GetShowingDetails()
+        public List<ShowingInstance> GetShowingInstance()
         {
             using (var repo = new Repository())
             {
@@ -13,15 +13,23 @@ namespace CENV_JMH.Services
             }
         }
 
-        public ShowingInstance GetShowingDetailById(int id)
+        public ShowingInstance GetShowingInstanceById(int id)
         {
             using (var repo = new Repository())
             {
-                return repo.Details.FirstOrDefault(h => h.ShowingID == id) ?? new ShowingInstance();
+                return repo.Details.FirstOrDefault(h => h.ID == id) ?? new ShowingInstance();
             }
         }
 
-        public void UpdateShowingDetail(ShowingInstance showingDetail)
+        public List<ShowingInstance> GetShowingInstancesByShowID(int showID)
+        {
+            using (var repo = new Repository())
+            {
+                return repo.Details.Where(d => d.ShowingID == showID).ToList() ?? new List<ShowingInstance>();
+            }
+        }
+
+        public void UpdateShowingInstance(ShowingInstance showingDetail)
         {
             using (var repo = new Repository())
             {
@@ -34,7 +42,7 @@ namespace CENV_JMH.Services
             }
         }
 
-        public void DeleteShowingDetail(int id)
+        public void DeleteShowingInstance(int id)
         {
             using (var repo = new Repository())
             {

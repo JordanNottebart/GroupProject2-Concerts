@@ -15,8 +15,4 @@
     <ProjectReference Include="..\CENV_JMH.Services\CENV_JMH.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Showing\" />
-  </ItemGroup>
-
 </Project>

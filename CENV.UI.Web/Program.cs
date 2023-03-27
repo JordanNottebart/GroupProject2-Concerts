@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<HallService>();
 builder.Services.AddTransient<ShowingService>();
-builder.Services.AddTransient<ShowingDetailService>();
+builder.Services.AddTransient<ShowingInstanceService>();
 
 var app = builder.Build();
 
