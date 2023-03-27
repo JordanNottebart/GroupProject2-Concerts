@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CENV_JMH.DO
 {
-    
     [Table("Showing")]
     public class Showing
     {
         [Column("Name_Showing")]
         public string Name { get; set; }
+
         [Column("Ticket_Price")]
         public double TicketPrice { get; set; }
 
