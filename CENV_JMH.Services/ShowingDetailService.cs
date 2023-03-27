@@ -5,7 +5,7 @@ namespace CENV_JMH.Services
 {
     public class ShowingDetailService
     {
-        public List<ShowingDetail> GetShowingDetails()
+        public List<ShowingInstance> GetShowingDetails()
         {
             using (var repo = new Repository())
             {
@@ -13,15 +13,15 @@ namespace CENV_JMH.Services
             }
         }
 
-        public ShowingDetail GetShowingDetailById(int id)
+        public ShowingInstance GetShowingDetailById(int id)
         {
             using (var repo = new Repository())
             {
-                return repo.Details.FirstOrDefault(h => h.ShowingID == id) ?? new ShowingDetail();
+                return repo.Details.FirstOrDefault(h => h.ShowingID == id) ?? new ShowingInstance();
             }
         }
 
-        public void UpdateShowingDetail(ShowingDetail showingDetail)
+        public void UpdateShowingDetail(ShowingInstance showingDetail)
         {
             using (var repo = new Repository())
             {

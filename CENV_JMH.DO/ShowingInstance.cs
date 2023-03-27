@@ -10,7 +10,7 @@ namespace CENV_JMH.DO
 {
     [Table("Showing_X_Hall")]
 
-    public class ShowingDetail
+    public class ShowingInstance
     {
         [Key]
         [Column("ReGex_ID")]

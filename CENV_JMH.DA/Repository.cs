@@ -8,7 +8,7 @@ namespace CENV_JMH.DA
         #region Properties
         public DbSet<Hall> Halls { get; set; }
         public DbSet<Showing> Showings { get; set; }
-        public DbSet<ShowingDetail> Details { get; set; }
+        public DbSet<ShowingInstance> Details { get; set; }
 
         #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
