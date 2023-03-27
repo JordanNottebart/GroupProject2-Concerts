@@ -1,5 +1,6 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
+using Microsoft.EntityFrameworkCore;
 
 namespace CENV_JMH.Services
 {
@@ -25,7 +26,7 @@ namespace CENV_JMH.Services
         {
             using (var repo = new Repository())
             {
-                return repo.Details.Where(d => d.ShowingID == showID).ToList() ?? new List<ShowingInstance>();
+                return repo.Details.Include(c => c.Hall).Include(c => c.Showing).Where(d => d.ShowingID == showID).ToList() ?? new List<ShowingInstance>();
             }
         }
 

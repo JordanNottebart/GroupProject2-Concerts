@@ -19,7 +19,7 @@
             <div class="row" style="height: 50%">
                 @for (int i =0 ; i<3 ; ++i)
                 {
-                    <div class="col" onclick="location.href='ShowingDetail/Index?${@Model[3*j + i].ShowingID}'" style="cursor: pointer">
+                    <div class="col" onclick="location.href='ShowingDetail/Index?id=' + @Model[3*j +i].ShowingID" style="cursor: pointer">
                         @Html.Partial("_IndexPartial", @Model[3 * j + i])
                     </div>
                 }
