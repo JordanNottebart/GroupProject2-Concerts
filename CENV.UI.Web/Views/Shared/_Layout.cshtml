@@ -28,11 +28,21 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Hall" asp-action="Index">Hall</a>
                         </li>
+                        <li class="nav-item dropdown text-dark">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin Actions</a>
+                                
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-controller="AdminShowings" asp-action="Index">Shows</a>
+                                <a class="dropdown-item" asp-controller="AdminHall" asp-action="Index">Halls</a>
+                                <a class="dropdown-item" asp-controller="AdminShowingInstance" asp-action="Create">Show Instance</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="btn btn-primary" style="float:right;">
                     <a class="nav-lin text-dark" asp-controller="AdminShowings" asp-action="Index">Admin</a>
                 </div>
+
             </div>
         </nav>
 
