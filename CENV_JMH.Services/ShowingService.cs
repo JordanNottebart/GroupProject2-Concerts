@@ -5,6 +5,17 @@ namespace CENV_JMH.Services
 {
     public class ShowingService
     {
+        public Showing[] GetHomeShowings(int aantalShowings)
+        {
+            using (var repo = new Repository())
+            {
+                var returnarray = new Showing[aantalShowings];
+                var x = repo.Showings.ToList();
+                x.CopyTo(0, returnarray, 0, aantalShowings);
+
+                return returnarray;
+            }
+        }
         public List<Showing> GetShowings()
         {
             using (var repo = new Repository())
