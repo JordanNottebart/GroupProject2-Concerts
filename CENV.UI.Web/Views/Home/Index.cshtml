@@ -1,5 +1,5 @@
 ﻿@using CENV_JMH.DO;
-@model             List<CENV_JMH.DO.Showing>
+@model Showing[]
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -12,7 +12,7 @@
 
 <div style="height:650px">
     <div class="text-center" style="height: 10%">
-        <h1 class="display-4">Iz like thiz</h1>
+        <h1 class="display-4">Featured shows</h1>
     </div>
         <div class="container text-center" style="height : 90%">
         @for(int j =0; j<2; ++j){
