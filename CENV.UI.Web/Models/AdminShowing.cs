@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace CENV_JMH.DO
+namespace CENV.UI.Web.Models
 {
     [Table("Showing")]
-    public class Showing
+    public class AdminShowing
     {
         [Key]
         [Column("Showing_ID")]
-        public int ShowingID { get; set; }
+        public int Id { get; set; }
 
         [Column("Name_Showing")]
         public string Name { get; set; }

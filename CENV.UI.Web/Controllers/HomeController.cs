@@ -16,39 +16,39 @@ namespace CENV.UI.Web.Controllers
 
         public IActionResult Index()
         {
-            var x = new List<Showing>()
+            var x = new List<CENV_JMH.DO.Showing>()
             {
-                new Showing()
+                new CENV_JMH.DO.Showing()
                 {
                     Name = "Home",
                     ShowingID = 1,
                     TicketPrice = 100
                 },
-                new Showing()
+                new CENV_JMH.DO.Showing()
                 {
                     Name = "Home",
                     ShowingID = 1,
                     TicketPrice = 100
                 },
-                new Showing()
+                new CENV_JMH.DO.Showing()
                 {
                     Name = "Home",
                     ShowingID = 1,
                     TicketPrice = 100
                 },
-                new Showing()
+                new CENV_JMH.DO.Showing()
                 {
                     Name = "Home",
                     ShowingID = 1,
                     TicketPrice = 100
                 },
-                new Showing()
+                new CENV_JMH.DO.Showing()
                 {
                     Name = "Home",
                     ShowingID = 1,
                     TicketPrice = 100
                 },
-                new Showing()
+                new CENV_JMH.DO.Showing()
                 {
                     Name = "Home",
                     ShowingID = 1,
