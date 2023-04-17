@@ -23,7 +23,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr  onclick="location.href='ShowingDetail/Index?id=' + @item.ShowingID" style="cursor : pointer">
+        <tr  onclick="location.href='AdminShowingDetail/Index?id=' + @item.ShowingID" style="cursor : pointer">
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>

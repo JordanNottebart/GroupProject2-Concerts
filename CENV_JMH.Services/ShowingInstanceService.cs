@@ -57,5 +57,14 @@ namespace CENV_JMH.Services
                 }
             }
         }
+
+        public void CreateShowingInstance(ShowingInstance instance)
+        {
+            using (var repo = new Repository())
+            {
+                repo.Details.Add(instance);
+                repo.SaveChanges();
+            }
+        }
     }
 }
