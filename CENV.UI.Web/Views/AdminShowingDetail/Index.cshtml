@@ -29,8 +29,6 @@ Quisque facilisis magna ipsum, ac molestie elit dignissim eget.
 
         <div class="col-6" style="Height:100%;Width:50%;">
             @*<partial>@Html.Partial("_ListofShowingInstancesPartial",@Model.TheInstances)</partial>*@
-
-
             <table class="table">
                 <thead>
                     <tr>
@@ -45,7 +43,8 @@ Quisque facilisis magna ipsum, ac molestie elit dignissim eget.
                 </thead>
                 <tbody>
                     @foreach (var item in Model.TheInstances) {
-                    <tr onclick="location.href='AdminShowingInstance/CreateAsync?id=' + @item.ID" style="cursor : pointer">
+                    <tr  style="cursor : pointer" onclick="location.href='AdminShowingInstance/CreateAsync?id=' + @item.ID">
+                        @*Werkt nog niet error 404 zet AdminShowingInstance/CreateAsync?id=id na AdminShowingDetail/*@
                         <td>
                             @Html.DisplayFor(modelItem => item.Date)
                         </td>
@@ -54,9 +53,13 @@ Quisque facilisis magna ipsum, ac molestie elit dignissim eget.
                         </td>
 
                     </tr>
-}
+                    }
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
