@@ -43,7 +43,7 @@ Quisque facilisis magna ipsum, ac molestie elit dignissim eget.
                 </thead>
                 <tbody>
                     @foreach (var item in Model.TheInstances) {
-                    <tr  style="cursor : pointer" @*onclick="location.href='/AdminShowingInstance/CreateAsync?id=' + @item.ID"*@>
+                    <tr  style="cursor : pointer" onclick="location.href='/AdminShowingInstance/Create?id=' + @item.ID">
                         @*Werkt nog niet error 404 zet AdminShowingInstance/CreateAsync?id=id na AdminShowingDetail/*@
                         <td>
                             @Html.DisplayFor(modelItem => item.Date)
