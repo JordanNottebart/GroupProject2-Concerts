@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace CENV_JMH.DA
 {
@@ -11,6 +12,16 @@ namespace CENV_JMH.DA
         public DbSet<Hall> Halls { get; set; }
         public DbSet<Showing> Showings { get; set; }
         public DbSet<ShowingInstance> Details { get; set; }
+
+        public Repository()
+        {
+            
+        }
+
+        public Repository(DbContextOptions<Repository> options) : base(options)
+        {
+            
+        }
 
         #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
