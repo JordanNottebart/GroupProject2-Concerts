@@ -1,10 +1,17 @@
-﻿using CENV_JMH.Services;
+using CENV_JMH.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using CENV.UI.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using CENV_JMH.DA;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("RepositoryConnection") ?? throw new InvalidOperationException("Connection string 'RepositoryConnection' not found.");
+
+builder.Services.AddDbContext<Repository>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<Repository>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

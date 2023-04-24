@@ -1,9 +1,11 @@
 ﻿using CENV_JMH.DO;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CENV_JMH.DA
 {
-    public class Repository : DbContext
+    public class Repository : IdentityDbContext<IdentityUser>
     {
         #region Properties
         public DbSet<Hall> Halls { get; set; }
