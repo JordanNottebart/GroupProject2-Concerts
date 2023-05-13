@@ -61,8 +61,8 @@ namespace CENV.UI.Web.Controllers
         [HttpGet]
         public IActionResult Delete([FromServices] HallService hallService, int id)
         {
-            var hallToDelete = hallService.GetHallById(id);
-            return View(hallToDelete);
+            var hall = hallService.GetHallById(id);
+            return View(hall);
         }
 
         [HttpPost]

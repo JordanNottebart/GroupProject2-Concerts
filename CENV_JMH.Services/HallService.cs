@@ -63,11 +63,9 @@ namespace CENV_JMH.Services
                 var toDelete = repo.Halls.FirstOrDefault(c => c.HallID == id, null);
                 if (toDelete != null)
                 {
-
                     repo.Halls.Remove(toDelete);
                     repo.SaveChanges();
                 }
-
             }
         }
 
