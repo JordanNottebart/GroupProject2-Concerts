@@ -7,8 +7,8 @@ namespace CENV.UI.Web.Controllers
     {
         public IActionResult Index([FromServices] ShowingService service)
         {
-            var lijst = service.GetShowings();
-            return View(lijst);
+            var list = service.GetShowings();
+            return View(list);
         }
 
     }

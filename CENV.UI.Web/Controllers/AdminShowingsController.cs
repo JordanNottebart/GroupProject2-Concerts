@@ -50,14 +50,14 @@ namespace CENV.UI.Web.Controllers
 
         }
         [HttpGet]
-        public IActionResult Edit([FromServices] ShowingService service, int id, int wegwerp)
+        public IActionResult Edit([FromServices] ShowingService service, int id, Showing show)
         {
             return View(service.GetShowingById(id));
 
         }
 
         [ HttpGet]
-        public IActionResult Delete([FromServices] ShowingService service, int id, int wegwerp)
+        public IActionResult Delete([FromServices] ShowingService service, int id, Showing show)
         {
             return View(service.GetShowingById(id));
         }
