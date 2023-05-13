@@ -15,7 +15,7 @@ namespace CENV.UI.Web.Controllers
 
         public IActionResult Details([FromServices] HallService hallService, int id)
         {
-            Hall hall = hallService.GetHallById(id);
+            var hall = hallService.GetHallById(id);
             return View(hall);
         }
 
