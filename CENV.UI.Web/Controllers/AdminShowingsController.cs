@@ -1,68 +1,73 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
+using CENV_JMH.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CENV.UI.Web.Controllers
 {
     public class AdminShowingsController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index([FromServices] ShowingService service)
         {
-            using (var repo = new Repository())
-            {
-                return View(repo.Showings.ToList());
-            }
+            return View(service.GetShowings().ToList());
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details([FromServices] ShowingService service, int id)
         {
-            Showing model;
-            using (var repo = new Repository())
-            {
-                model = repo.Showings.FirstOrDefault(s => s.ShowingID == id);
-            }
+            Showing model = service.GetShowingById(id);             
             return View(model);
         }
 
-        public ActionResult Create(int id, string name, double ticketPrice, string? picture_URL)
+        [HttpPost]
+        public ActionResult Create([FromServices]ShowingService service, int id, string name, double ticketPrice, string? picture_URL)
         {
-            Showing newShow;
-            using (var repo = new Repository())
-            {
-                newShow = new Showing();
-                newShow.ShowingID = id;
-                newShow.Name = name;
-                newShow.TicketPrice = ticketPrice;
-                newShow.Picture_URL = picture_URL;
-                repo.Add(newShow);
+            Showing newShow= new Showing();
+            newShow.ShowingID = id;
+            newShow.Name = name;
+            newShow.TicketPrice = ticketPrice;
+            newShow.Picture_URL = picture_URL;
 
-            }
+            service.CreateShowing(newShow);
 
-            return View(newShow);
+            return Redirect("Index");
         }
 
-        public async Task<ActionResult> Edit(int id)
+        [HttpGet]
+        public IActionResult Create()
         {
-            using (var repo = new Repository())
-            {
-                var model = repo.Showings.FirstOrDefault(s => s.ShowingID == id);
+            return View(new Showing());
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit([FromServices] ShowingService service, int id)
+        {
+
+                var model = service.GetShowingById(id);
                 await TryUpdateModelAsync(model);
-                repo.SaveChanges();
-                return View(model);
-            }
+                service.UpdateShowing(model);
+                return RedirectToAction("Index");
+
+
+        }
+        [HttpGet]
+        public IActionResult Edit([FromServices] ShowingService service, int id, int wegwerp)
+        {
+            return View(service.GetShowingById(id));
 
         }
 
-        public ActionResult Delete(int id)
+        [ HttpGet]
+        public IActionResult Delete([FromServices] ShowingService service, int id, int wegwerp)
         {
-            using (var repo = new Repository())
-            {
-                var model = repo.Showings.FirstOrDefault(s => s.ShowingID == id);
-                repo.Showings.Remove(model);
-                repo.SaveChanges();
-            }
+            return View(service.GetShowingById(id));
+        }
 
-            return View();
+        [HttpPost]
+        public ActionResult Delete([FromServices] ShowingService service, int id)
+        {
+            service.DeleteShowing(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

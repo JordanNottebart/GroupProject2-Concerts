@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CENV_JMH.DO
 {
-    public class User
+    public class Ticket
     {
 
     }
