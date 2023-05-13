@@ -21,32 +21,65 @@ namespace CENV_JMH.Services
             }
         }
 
-        public void UpdateHall(Hall hall)
+        public Hall UpdateAndCreateHall(Hall hall)
         {
             using (var repo = new Repository())
             {
-                repo.Halls.Attach(hall);
+                if (hall.HallID == 0)
+                {
+                    repo.Halls.Add(hall);
+                }
+                else
+                {
+                    repo.Halls.Attach(hall);
 
-                var e = repo.ChangeTracker.Entries().FirstOrDefault(c => c.Entity ==  hall);
-                e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-
+                    var e = repo.ChangeTracker
+                        .Entries()
+                        .FirstOrDefault(c => c.Entity == hall);
+                    e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                }
                 repo.SaveChanges();
+                return hall;
             }
         }
+        //public void UpdateHall(Hall hall)
+        //{
+        //    using (var repo = new Repository())
+        //    {
+        //        repo.Halls.Attach(hall);
+
+        //        var e = repo.ChangeTracker.Entries().FirstOrDefault(c => c.Entity == hall);
+        //        e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+        //        repo.SaveChanges();
+        //    }
+        //}
 
         public void DeleteHall(int id)
         {
             using (var repo = new Repository())
             {
 
-                var todelte = repo.Halls.FirstOrDefault(c => c.HallID == id, null);
-                if (todelte != null)
+                var toDelete = repo.Halls.FirstOrDefault(c => c.HallID == id, null);
+                if (toDelete != null)
                 {
 
-                    repo.Halls.Remove(todelte);
+                    repo.Halls.Remove(toDelete);
                     repo.SaveChanges();
                 }
+
             }
         }
+
+        //public Hall CreateHall(int id, Hall hall)
+        //{
+        //    using (var repo = new Repository())
+        //    {
+        //        repo.Halls.Add(hall);
+        //        repo.SaveChanges();
+        //        return hall;
+        //    }
+        //}
     }
 }
+

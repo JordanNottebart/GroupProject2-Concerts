@@ -1,67 +1,75 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
+using CENV_JMH.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CENV.UI.Web.Controllers
 {
     public class AdminHallController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index([FromServices] HallService hallService)
         {
-            using (var repo = new Repository())
-            {
-                return View(repo.Halls.ToList());
-            }
+            var hall = hallService.GetHalls().ToList();
+            return View(hall);
         }
 
-        public ActionResult Details(int id)
+        public IActionResult Details([FromServices] HallService hallService, int id)
         {
-            Hall model;
-            using (var repo = new Repository())
-            {
-                model = repo.Halls.FirstOrDefault(h => h.HallID == id);
-            }
-
-            return View(model);
+            Hall hall = hallService.GetHallById(id);
+            return View(hall);
         }
 
-        public ActionResult Create(int id, string name, int maxNumberOfPlaces)
+        [HttpGet]
+        public IActionResult Edit([FromServices] HallService hallService, int id)
         {
-            Hall newHall;
-            using (var repo = new Repository())
-            {
-                newHall = new Hall();
-                newHall.HallID = id;
-                newHall.Name = name;
-                newHall.MaxNumberOfPlaces = maxNumberOfPlaces;
-                repo.Add(newHall);
-
-            }
-
-            return View(newHall);
+            var hall = hallService.GetHallById(id);
+            return View(hall);
         }
 
-        public async Task<ActionResult> Edit(int id)
+        [HttpPost]
+        public async Task<IActionResult> Edit([FromServices] HallService hallService, int id, Hall hall)
         {
-            using (var repo = new Repository())
-            {
-                var model = repo.Halls.FirstOrDefault(h => h.HallID == id);
-                await TryUpdateModelAsync(model);
-                repo.SaveChanges();
-                return View(model);
-            }
+            var hallEdited = hallService.GetHallById(id);
+            await TryUpdateModelAsync(hallEdited);
+            hallService.UpdateAndCreateHall(hallEdited);
+            return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(int id)
+        [HttpGet]
+        public IActionResult Create()
         {
-            using (var repo = new Repository())
-            {
-                var model = repo.Halls.FirstOrDefault(h => h.HallID == id);
-                repo.Halls.Remove(model);
-                repo.SaveChanges();
-            }
+            //var hallToCreate = hallService.UpdateAndCreateHall();
 
-            return View();
+            //return View(hallToCreate);
+            return View(new Hall());
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromServices] HallService hallService, int id, string name, int maxNumberOfPlaces)
+        {
+            Hall newHall = new Hall();
+
+            newHall.HallID = id;
+            newHall.Name = name;
+            newHall.MaxNumberOfPlaces = maxNumberOfPlaces;
+            hallService.UpdateAndCreateHall(newHall);
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete([FromServices] HallService hallService, int id)
+        {
+            var hallToDelete = hallService.GetHallById(id);
+            return View(hallToDelete);
+        }
+
+        [HttpPost]
+        public IActionResult Delete([FromServices] HallService hallService, int id, Hall hall)
+        {
+            hallService.DeleteHall(id);
+            return RedirectToAction("Index");
         }
     }
 }
