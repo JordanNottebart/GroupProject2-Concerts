@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CENV.UI.Web.Controllers
 {
-    public class BuyTicketController : Controller
+    public class TicketController : Controller
     {
         public IActionResult Index()
         {
