@@ -31,12 +31,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.HallID)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MaxNumberOfPlaces)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
+           
             <td>
                     @Html.ActionLink("Edit", "Edit", new { id=item.HallID  }) |
                     @Html.ActionLink("Details", "Details", new { id=item.HallID }) |
