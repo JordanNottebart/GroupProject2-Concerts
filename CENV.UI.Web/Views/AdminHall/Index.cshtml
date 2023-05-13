@@ -21,28 +21,30 @@
             <th>
                 @Html.DisplayNameFor(model => model.MaxNumberOfPlaces)
             </th>
-            
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HallID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxNumberOfPlaces)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HallID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxNumberOfPlaces)
+                </td>
+
+                <td>
                     @Html.ActionLink("Edit", "Edit", new { id=item.HallID  }) |
                     @Html.ActionLink("Details", "Details", new { id=item.HallID }) |
                     @Html.ActionLink("Delete", "Delete", new { id=item.HallID })
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
