@@ -50,13 +50,22 @@ namespace CENV_JMH.Services
             using (var repo = new Repository())
             {
 
-                var todelete = repo.Showings.FirstOrDefault(c => c.ShowingID == id, null);
+                var todelete = repo.Showings.ToList().FirstOrDefault(c => c.ShowingID == id, null);
                 if (todelete != null)
                 {
 
                     repo.Showings.Remove(todelete);
                     repo.SaveChanges();
                 }
+            }
+        }
+
+        public void CreateShowing(Showing showing)
+        {
+            using (var repo = new Repository())
+            {
+                repo.Showings.Add(showing);
+                repo.SaveChanges();
             }
         }
     }
