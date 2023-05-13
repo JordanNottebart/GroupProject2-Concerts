@@ -11,8 +11,15 @@ namespace CENV_JMH.Services
             {
                 var returnarray = new Showing[aantalShowings];
                 var x = repo.Showings.ToList();
-                x.CopyTo(0, returnarray, 0, aantalShowings);
 
+                if (x.Count < aantalShowings)
+                {
+                    while (x.Count<aantalShowings)
+                    {
+                        x.Add(new Showing());
+                    }
+                }
+                x.CopyTo(0, returnarray, 0, aantalShowings);
                 return returnarray;
             }
         }
