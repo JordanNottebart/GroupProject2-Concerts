@@ -8,6 +8,6 @@ namespace CENV_JMH.DO
 {
     public class Ticket
     {
-
+        public string Name { get; set; }
     }
 }
