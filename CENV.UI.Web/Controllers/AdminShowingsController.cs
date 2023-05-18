@@ -14,14 +14,14 @@ namespace CENV.UI.Web.Controllers
 
         public ActionResult Details([FromServices] ShowingService service, int id)
         {
-            Showing model = service.GetShowingById(id);             
+            Showing model = service.GetShowingById(id);
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create([FromServices]ShowingService service, int id, string name, double ticketPrice, string? picture_URL)
+        public ActionResult Create([FromServices] ShowingService service, int id, string name, double ticketPrice, string? picture_URL)
         {
-            Showing newShow= new Showing();
+            Showing newShow = new Showing();
             newShow.ShowingID = id;
             newShow.Name = name;
             newShow.TicketPrice = ticketPrice;
@@ -42,10 +42,10 @@ namespace CENV.UI.Web.Controllers
         public async Task<ActionResult> Edit([FromServices] ShowingService service, int id)
         {
 
-                var model = service.GetShowingById(id);
-                await TryUpdateModelAsync(model);
-                service.UpdateShowing(model);
-                return RedirectToAction("Index");
+            var model = service.GetShowingById(id);
+            await TryUpdateModelAsync(model);
+            service.UpdateShowing(model);
+            return RedirectToAction("Index");
 
 
         }
@@ -56,7 +56,7 @@ namespace CENV.UI.Web.Controllers
 
         }
 
-        [ HttpGet]
+        [HttpGet]
         public IActionResult Delete([FromServices] ShowingService service, int id, Showing show)
         {
             return View(service.GetShowingById(id));

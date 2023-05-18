@@ -11,7 +11,7 @@ namespace CENV.UI.Web.Controllers
             var showing = showingService.GetShowingById(id);
             var listOfInstances = instanceservice.GetShowingInstancesByShowID(id);
 
-            var model = new ShowDetailModel() { TheInstances = listOfInstances, TheShow = showing};
+            var model = new ShowDetailModel() { TheInstances = listOfInstances, TheShow = showing };
             return View(model);
         }
     }
