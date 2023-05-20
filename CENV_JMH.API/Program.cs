@@ -20,6 +20,7 @@ builder.Services.AddDbContext<Repository>(options => options.UseSqlServer
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<HallService>();
+builder.Services.AddScoped<ShowingService>();
 //builder.Services.AddScoped<JwtHelper>();
 
 builder.Services.AddAuthentication();

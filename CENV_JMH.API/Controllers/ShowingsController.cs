@@ -1,21 +1,19 @@
 ﻿using CENV_JMH.API.Dto;
 using CENV_JMH.DO;
 using CENV_JMH.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace CENV_JMH.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HallsController : ControllerBase
+    public class ShowingsController : ControllerBase
     {
-        private readonly HallService _hallService;
-        public HallsController(HallService hallService)
+        private readonly ShowingService _showService;
+        public ShowingsController(ShowingService showService)
         {
-            this._hallService = hallService;
+            this._showService = showService;
         }
 
         [HttpGet]
@@ -23,8 +21,8 @@ namespace CENV_JMH.API.Controllers
         {
             try
             {
-                var listHalls = _hallService.GetHalls();
-                return Ok(listHalls);
+                var listOfShows = _showService.GetShowings();
+                return Ok(listOfShows);
             }
             catch (Exception ex)
             {
@@ -38,14 +36,14 @@ namespace CENV_JMH.API.Controllers
         {
             try
             {
-                var hall = _hallService.GetHallById(id);
+                var show = _showService.GetShowingById(id);
 
-                if (hall == null)
+                if (show == null)
                 {
-                    return NotFound("Hall not found");
+                    return NotFound("Show not found");
                 }
 
-                return Ok(hall);
+                return Ok(show);
             }
             catch (Exception e)
             {
@@ -55,7 +53,7 @@ namespace CENV_JMH.API.Controllers
         }
 
         [HttpGet("byid")]
-        public IActionResult GetByIdQueryParam(int hallId, string? personalMessage)
+        public IActionResult GetByIdQueryParam(int showId, string? personalMessage)
         {
 
             try
@@ -65,14 +63,14 @@ namespace CENV_JMH.API.Controllers
                     personalMessage = "This is your personal message";
                 }
 
-                var hall = _hallService.GetHallById(hallId);
+                var show = _showService.GetShowingById(showId);
 
-                if (hall == null)
+                if (show == null)
                 {
                     //404 not found
-                    return NotFound("Hall not found");
+                    return NotFound("Show not found");
                 }
-                return Ok(new { hall, personalMessage });
+                return Ok(new { show, personalMessage });
             }
             catch (Exception e)
             {
@@ -82,18 +80,18 @@ namespace CENV_JMH.API.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult Create([FromBody] HallDto hall)
+        public IActionResult Create([FromBody] ShowingDto show)
         {
 
             try
             {
-                var createdHall = _hallService.CreateHall(new Hall
+                var createdShow = _showService.CreateShowing(new Showing
                 {
-                    Name = hall.Name,
-                    MaxNumberOfPlaces = hall.MaxNumberOfPlaces,
-                    
+                    Name = show.Name,
+                    TicketPrice = show.TicketPrice,
+                    Picture_URL = show.Picture_URL,
                 });
-                return CreatedAtAction("GetById", new { id = createdHall.HallID }, createdHall);
+                return CreatedAtAction("GetById", new { id = createdShow.ShowingID }, createdShow);
             }
             catch (Exception e)
             {
@@ -102,47 +100,26 @@ namespace CENV_JMH.API.Controllers
 
         }
 
-        [HttpPatch("MaxNumberOfPlaces/{id}")]
-        public IActionResult UpdateMaxNumberOfPlaces(int id, [FromBody] UpdateMaxNumberOfPlacesDto udd)
-        {
-
-            try
-            {
-                var hall = _hallService.UpdateMaxNumberOfPlaces(id, udd.MaxNumberOfPlaces);
-
-                if (hall == null) 
-                {
-                    return NotFound("Hall not found");
-                }
-
-                return Ok(new { Message = "Hall Updated", hall });
-            }
-            catch (Exception e)
-            {
-
-                return StatusCode(StatusCodes.Status500InternalServerError, (new { Message = "Something went wrong please try again" }));
-            }
-
-        }
 
         [HttpPut("update/{id}")]
-        public IActionResult Update(int id, [FromBody] HallDto hall)
+        public IActionResult Update(int id, [FromBody] ShowingDto show)
         {
 
             try
             {
-                var hallToUpdate = _hallService.UpdateHall(id, new Hall
+                var showToUpdate = _showService.UpdateShowing(id, new Showing
                 {
-                    Name = hall.Name,
-                    MaxNumberOfPlaces = hall.MaxNumberOfPlaces,
+                    Name = show.Name,
+                    TicketPrice = show.TicketPrice,
+                    Picture_URL = show.Picture_URL,
                 });
 
-                if (hallToUpdate == null)
+                if (showToUpdate == null)
                 {
-                    return NotFound("Hall not found");
+                    return NotFound("Show not found");
                 }
 
-                return CreatedAtAction("GetById", new { id = hallToUpdate.HallID }, hallToUpdate);
+                return CreatedAtAction("GetById", new { id = showToUpdate.ShowingID }, showToUpdate);
             }
             catch (Exception e)
             {
@@ -155,14 +132,14 @@ namespace CENV_JMH.API.Controllers
         {
             try
             {
-                var isDeleted = _hallService.DeleteHall(id);
+                var isDeleted = _showService.DeleteShowing(id);
 
                 if (isDeleted)
                 {
-                    return Ok(new { Message = "Hall deleted successfully" });
+                    return Ok(new { Message = "Show deleted successfully" });
                 }
 
-                return BadRequest(new { Message = "Something went wrong trying to delete hall." });
+                return BadRequest(new { Message = "Something went wrong trying to delete show." });
             }
             catch (Exception e)
             {

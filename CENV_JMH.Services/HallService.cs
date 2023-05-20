@@ -50,7 +50,7 @@ namespace CENV_JMH.Services
             }
         }
  
-        public void DeleteHall(int id)
+        public bool DeleteHall(int id)
         {
             using (var repo = new Repository())
             {
@@ -60,7 +60,9 @@ namespace CENV_JMH.Services
                 {
                     repo.Halls.Remove(toDelete);
                     repo.SaveChanges();
+                    return true;
                 }
+                return false;
             }
         }
 

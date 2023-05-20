@@ -18,6 +18,13 @@ namespace CENV.UI.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View(new Showing());
+        }
+
+
         [HttpPost]
         public ActionResult Create([FromServices] ShowingService service, int id, string name, double ticketPrice, string? picture_URL)
         {
@@ -33,9 +40,9 @@ namespace CENV.UI.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Edit([FromServices] ShowingService service, int id, Showing show)
         {
-            return View(new Showing());
+            return View(service.GetShowingById(id));
         }
 
         [HttpPost]
@@ -44,16 +51,8 @@ namespace CENV.UI.Web.Controllers
 
             var model = service.GetShowingById(id);
             await TryUpdateModelAsync(model);
-            service.UpdateShowing(model);
+            service.UpdateShowing(id, model);
             return RedirectToAction("Index");
-
-
-        }
-        [HttpGet]
-        public IActionResult Edit([FromServices] ShowingService service, int id, Showing show)
-        {
-            return View(service.GetShowingById(id));
-
         }
 
         [HttpGet]
