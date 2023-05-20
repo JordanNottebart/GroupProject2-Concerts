@@ -49,27 +49,7 @@ namespace CENV_JMH.Services
                 return hall;
             }
         }
-        //public Hall UpdateAndCreateHall(int id, Hall hall)
-        //{
-        //    using (var repo = new Repository())
-        //    {
-        //        if (hall.HallID == 0)
-        //        {
-        //            repo.Halls.Add(hall);
-        //        }
-        //        else
-        //        {
-        //            repo.Halls.Attach(hall);
-
-        //            var e = repo.ChangeTracker
-        //                .Entries()
-        //                .FirstOrDefault(c => c.Entity == hall);
-        //            e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-        //        }
-        //        repo.SaveChanges();
-        //        return hall;
-        //    }
-        //}
+ 
         public void DeleteHall(int id)
         {
             using (var repo = new Repository())
@@ -104,4 +84,3 @@ namespace CENV_JMH.Services
         }
     }
 }
-
