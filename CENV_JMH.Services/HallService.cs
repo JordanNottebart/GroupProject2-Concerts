@@ -36,11 +36,6 @@ namespace CENV_JMH.Services
                     repo.SaveChanges();
                     return hallToUpdate;
                 }
-
-                //var e = repo.ChangeTracker.Entries().FirstOrDefault(c => c.Entity == hall);
-                //e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-
-                
                 return null;
             }
         }
