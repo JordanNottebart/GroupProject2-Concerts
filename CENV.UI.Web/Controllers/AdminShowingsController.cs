@@ -7,6 +7,11 @@ namespace CENV.UI.Web.Controllers
 {
     public class AdminShowingsController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public AdminShowingsController(IWebHostEnvironment webHostEnvironment)
+        {
+            _webHostEnvironment = webHostEnvironment;
+        }
         public ActionResult Index([FromServices] ShowingService service)
         {
             return View(service.GetShowings().ToList());
