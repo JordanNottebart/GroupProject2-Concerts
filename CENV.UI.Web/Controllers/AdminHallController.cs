@@ -31,7 +31,7 @@ namespace CENV.UI.Web.Controllers
         {
             var hallEdited = hallService.GetHallById(id);
             await TryUpdateModelAsync(hallEdited);
-            hallService.UpdateAndCreateHall(hallEdited);
+            hallService.UpdateHall(id, hallEdited);
             return RedirectToAction("Index");
         }
 
@@ -52,7 +52,7 @@ namespace CENV.UI.Web.Controllers
             newHall.HallID = id;
             newHall.Name = name;
             newHall.MaxNumberOfPlaces = maxNumberOfPlaces;
-            hallService.UpdateAndCreateHall(newHall);
+            hallService.CreateHall(newHall);
 
             return RedirectToAction("Index");
         }
