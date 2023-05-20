@@ -38,9 +38,6 @@ namespace CENV.UI.Web.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            //var hallToCreate = hallService.UpdateAndCreateHall();
-
-            //return View(hallToCreate);
             return View(new Hall());
         }
 

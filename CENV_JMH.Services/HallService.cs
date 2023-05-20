@@ -22,17 +22,26 @@ namespace CENV_JMH.Services
             }
         }
 
-        public Hall UpdateHall(int id, Hall hall)
+        public Hall? UpdateHall(int id, Hall hall)
         {
             using (var repo = new Repository())
             {
-                var hallToUpdate = repo.Halls.Update(hall);
+                var hallToUpdate = repo.Halls.Where(h=>h.HallID == id).FirstOrDefault();
 
-                var e = repo.ChangeTracker.Entries().FirstOrDefault(c => c.Entity == hall);
-                e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                if (hallToUpdate != null)
+                {
+                    hallToUpdate.Name = hall.Name;
+                    hallToUpdate.MaxNumberOfPlaces = hall.MaxNumberOfPlaces;
+                    repo.Update(hallToUpdate);
+                    repo.SaveChanges();
+                    return hallToUpdate;
+                }
 
-                repo.SaveChanges();
-                return hall;
+                //var e = repo.ChangeTracker.Entries().FirstOrDefault(c => c.Entity == hall);
+                //e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+                
+                return null;
             }
         }
 
