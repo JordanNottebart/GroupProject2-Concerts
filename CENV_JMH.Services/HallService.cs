@@ -1,5 +1,6 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
+using Microsoft.EntityFrameworkCore;
 
 namespace CENV_JMH.Services
 {
@@ -21,28 +22,35 @@ namespace CENV_JMH.Services
             }
         }
 
-        public Hall UpdateAndCreateHall(Hall hall)
+        public Hall? UpdateHall(int id, Hall hall)
         {
             using (var repo = new Repository())
             {
-                if (hall.HallID == 0)
-                {
-                    repo.Halls.Add(hall);
-                }
-                else
-                {
-                    repo.Halls.Attach(hall);
+                var hallToUpdate = repo.Halls.Where(h=>h.HallID == id).FirstOrDefault();
 
-                    var e = repo.ChangeTracker
-                        .Entries()
-                        .FirstOrDefault(c => c.Entity == hall);
-                    e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                if (hallToUpdate != null)
+                {
+                    hallToUpdate.Name = hall.Name;
+                    hallToUpdate.MaxNumberOfPlaces = hall.MaxNumberOfPlaces;
+                    repo.Update(hallToUpdate);
+                    repo.SaveChanges();
+                    return hallToUpdate;
                 }
+                return null;
+            }
+        }
+
+        public Hall CreateHall(Hall hall)
+        {
+            using (var repo = new Repository())
+            {
+                repo.Halls.Add(hall);
                 repo.SaveChanges();
                 return hall;
             }
         }
-        public void DeleteHall(int id)
+ 
+        public bool DeleteHall(int id)
         {
             using (var repo = new Repository())
             {
@@ -52,9 +60,29 @@ namespace CENV_JMH.Services
                 {
                     repo.Halls.Remove(toDelete);
                     repo.SaveChanges();
+                    return true;
                 }
+                return false;
+            }
+        }
+
+        public Hall? UpdateMaxNumberOfPlaces(int id, int maxNumberOfPlaces)
+        {
+            using (var repo = new Repository())
+            {
+                var hallToUpdate = repo.Halls.Where(h => h.HallID == id).FirstOrDefault();
+
+                if (hallToUpdate != null)
+                {
+                    hallToUpdate.MaxNumberOfPlaces = maxNumberOfPlaces;
+
+                    repo.Update(hallToUpdate);
+                    repo.SaveChanges();
+
+                    return hallToUpdate;
+                }
+                return null;
             }
         }
     }
 }
-

@@ -1,5 +1,6 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
+using System;
 
 namespace CENV_JMH.Services
 {
@@ -39,20 +40,26 @@ namespace CENV_JMH.Services
             }
         }
 
-        public void UpdateShowing(Showing showing)
+        public Showing? UpdateShowing(int id, Showing show)
         {
             using (var repo = new Repository())
             {
-                repo.Showings.Attach(showing);
+                var showToUpdate = repo.Showings.Where(h => h.ShowingID == id).FirstOrDefault();
 
-                var e = repo.ChangeTracker.Entries().FirstOrDefault(c => c.Entity ==  showing);
-                e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-
-                repo.SaveChanges();
+                if (showToUpdate != null)
+                {
+                    showToUpdate.Name = show.Name;
+                    showToUpdate.TicketPrice = show.TicketPrice;
+                    showToUpdate.Picture_URL = show.Picture_URL;
+                    repo.Update(showToUpdate);
+                    repo.SaveChanges();
+                    return showToUpdate;
+                }
+                return null;
             }
         }
 
-        public void DeleteShowing(int id)
+        public bool DeleteShowing(int id)
         {
             using (var repo = new Repository())
             {
@@ -63,16 +70,19 @@ namespace CENV_JMH.Services
 
                     repo.Showings.Remove(todelete);
                     repo.SaveChanges();
+                    return true;
                 }
+                return false;
             }
         }
 
-        public void CreateShowing(Showing showing)
+        public Showing CreateShowing(Showing showing)
         {
             using (var repo = new Repository())
             {
                 repo.Showings.Add(showing);
                 repo.SaveChanges();
+                return showing;
             }
         }
     }

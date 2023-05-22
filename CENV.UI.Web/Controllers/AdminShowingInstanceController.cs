@@ -20,26 +20,25 @@ namespace CENV.UI.Web.Controllers
         {
 
             ShowingInstance showingInstance;
-                if (id == 0)
+            if (id == 0)
+            {
+                showingInstance = new ShowingInstance
                 {
-                    showingInstance = new ShowingInstance
-                    {
-                        ID = id,
-                        ShowingID = showingID,
-                        HallID = hallID,
-                        Date = date,
-                        SeatsSold = seatsSold
-                    };
-                    service.CreateShowingInstance(showingInstance); 
-                }
-                else
-                {
-                    showingInstance = service.GetShowingInstanceById(id);
-                    await TryUpdateModelAsync(showingInstance);
-                    service.UpdateShowingInstance(showingInstance);
-                }
-                return RedirectToAction("Create?id=" + id);
+                    ID = id,
+                    ShowingID = showingID,
+                    HallID = hallID,
+                    Date = date,
+                    SeatsSold = seatsSold
+                };
+                service.CreateShowingInstance(showingInstance);
             }
+            else
+            {
+                showingInstance = service.GetShowingInstanceById(id);
+                await TryUpdateModelAsync(showingInstance);
+                service.UpdateShowingInstance(showingInstance);
+            }
+            return RedirectToAction("Create?id=" + id);
         }
     }
-
+}

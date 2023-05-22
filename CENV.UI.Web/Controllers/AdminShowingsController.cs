@@ -7,6 +7,11 @@ namespace CENV.UI.Web.Controllers
 {
     public class AdminShowingsController : Controller
     {
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public AdminShowingsController(IWebHostEnvironment webHostEnvironment)
+        {
+            _webHostEnvironment = webHostEnvironment;
+        }
         public ActionResult Index([FromServices] ShowingService service)
         {
             return View(service.GetShowings().ToList());
@@ -14,14 +19,21 @@ namespace CENV.UI.Web.Controllers
 
         public ActionResult Details([FromServices] ShowingService service, int id)
         {
-            Showing model = service.GetShowingById(id);             
+            Showing model = service.GetShowingById(id);
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult Create([FromServices]ShowingService service, int id, string name, double ticketPrice, string? picture_URL)
+        [HttpGet]
+        public IActionResult Create()
         {
-            Showing newShow= new Showing();
+            return View(new Showing());
+        }
+
+
+        [HttpPost]
+        public ActionResult Create([FromServices] ShowingService service, int id, string name, double ticketPrice, string? picture_URL)
+        {
+            Showing newShow = new Showing();
             newShow.ShowingID = id;
             newShow.Name = name;
             newShow.TicketPrice = ticketPrice;
@@ -33,31 +45,23 @@ namespace CENV.UI.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Edit([FromServices] ShowingService service, int id, Showing show)
         {
-            return View(new Showing());
+            return View(service.GetShowingById(id));
         }
 
         [HttpPost]
         public async Task<ActionResult> Edit([FromServices] ShowingService service, int id)
         {
 
-                var model = service.GetShowingById(id);
-                await TryUpdateModelAsync(model);
-                service.UpdateShowing(model);
-                return RedirectToAction("Index");
-
-
+            var model = service.GetShowingById(id);
+            await TryUpdateModelAsync(model);
+            service.UpdateShowing(id, model);
+            return RedirectToAction("Index");
         }
+
         [HttpGet]
-        public IActionResult Edit([FromServices] ShowingService service, int id, int wegwerp)
-        {
-            return View(service.GetShowingById(id));
-
-        }
-
-        [ HttpGet]
-        public IActionResult Delete([FromServices] ShowingService service, int id, int wegwerp)
+        public IActionResult Delete([FromServices] ShowingService service, int id, Showing show)
         {
             return View(service.GetShowingById(id));
         }

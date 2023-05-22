@@ -9,9 +9,9 @@ namespace CENV.UI.Web.Controllers
         public IActionResult Index([FromServices] ShowingInstanceService instanceservice, [FromServices] ShowingService showingService, int id)
         {
             var showing = showingService.GetShowingById(id);
-            var lijstofinstances = instanceservice.GetShowingInstancesByShowID(id);
+            var listOfInstances = instanceservice.GetShowingInstancesByShowID(id);
 
-            var model = new ShowDetailModel() { TheInstances = lijstofinstances , TheShow = showing};
+            var model = new ShowDetailModel() { TheInstances = listOfInstances, TheShow = showing };
             return View(model);
         }
     }
