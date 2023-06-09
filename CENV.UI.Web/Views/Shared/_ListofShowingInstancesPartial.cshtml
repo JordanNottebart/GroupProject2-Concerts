@@ -21,7 +21,9 @@
             <td>
                 @(item.Hall.MaxNumberOfPlaces - item.SeatsSold)
             </td>
-
+            <td>
+            <a asp-action="BuyTickets" asp-controller="Ticket"  asp-route-id="@item.ID">Buy Ticket</a>
+            </td>
         </tr>
 }
     </tbody>

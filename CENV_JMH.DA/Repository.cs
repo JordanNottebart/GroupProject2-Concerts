@@ -12,6 +12,7 @@ namespace CENV_JMH.DA
         public DbSet<Hall> Halls { get; set; }
         public DbSet<Showing> Showings { get; set; }
         public DbSet<ShowingInstance> Details { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
 
         public Repository()
         {

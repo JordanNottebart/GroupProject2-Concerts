@@ -18,7 +18,7 @@ namespace CENV_JMH.Services
         {
             using (var repo = new Repository())
             {
-                return repo.Details.FirstOrDefault(h => h.ID == id) ?? new ShowingInstance();
+                return repo.Details.Include(s => s.Hall).FirstOrDefault(h => h.ID == id) ?? new ShowingInstance();
             }
         }
 

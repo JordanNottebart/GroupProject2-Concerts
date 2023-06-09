@@ -22,6 +22,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<HallService>();
 builder.Services.AddTransient<ShowingService>();
 builder.Services.AddTransient<ShowingInstanceService>();
+builder.Services.AddTransient<TicketService>();
 
 var app = builder.Build();
 

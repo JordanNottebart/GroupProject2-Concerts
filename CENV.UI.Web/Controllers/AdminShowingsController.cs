@@ -1,7 +1,9 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
 using CENV_JMH.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace CENV.UI.Web.Controllers
 {
@@ -14,6 +16,7 @@ namespace CENV.UI.Web.Controllers
         }
         public ActionResult Index([FromServices] ShowingService service)
         {
+            
             return View(service.GetShowings().ToList());
         }
 

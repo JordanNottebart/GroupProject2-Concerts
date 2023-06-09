@@ -1,3 +1,40 @@
-﻿@model CENV_JMH.DO.Ticket
+﻿@model IEnumerable<CENV_JMH.DO.Ticket>
 
-<h1>@Model.Name</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.showingInstance.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.showingInstance.Hall.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.showingInstance.Showing.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.showingInstance.Date)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.showingInstance.Hall.Name)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.showingInstance.Showing.Name)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
