@@ -23,7 +23,8 @@ namespace CENV.UI.Web.Controllers
         {
             var curr = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            return View(_TicketService.GetTicket(curr));
+            var x = _TicketService.GetTicket(curr);
+            return View(x);
         }
 
 
