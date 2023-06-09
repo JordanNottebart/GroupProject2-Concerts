@@ -21,6 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<HallService>();
 builder.Services.AddScoped<ShowingService>();
+builder.Services.AddScoped<ShowingInstanceService>();
 //builder.Services.AddScoped<JwtHelper>();
 
 builder.Services.AddAuthentication();
