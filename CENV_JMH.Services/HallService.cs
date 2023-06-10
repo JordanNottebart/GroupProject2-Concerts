@@ -92,15 +92,5 @@ namespace CENV_JMH.Services
                 return null;
             }
         }
-
-        // Check if Hall number exists if so choose something else, this check is used in
-        // AdminHallController for Edit and Create methods
-        public bool IsNumberExists(int number)
-        {
-            using (var repo = new Repository())
-            {
-                return repo.Halls.Any(h => h.Number == number);
-            }
-        }
     }
 }

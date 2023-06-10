@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CENV_JMH.DA.Migrations
 {
     [DbContext(typeof(Repository))]
-    [Migration("20230610094611_SeedShowingToDb")]
-    partial class SeedShowingToDb
+    [Migration("20230610161038_Create")]
+    partial class Create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,6 +79,20 @@ namespace CENV_JMH.DA.Migrations
                             MaxNumberOfPlaces = 134,
                             Name = "The Arctic",
                             Number = 4
+                        },
+                        new
+                        {
+                            HallID = 5,
+                            MaxNumberOfPlaces = 111,
+                            Name = "Sapphire Palace",
+                            Number = 5
+                        },
+                        new
+                        {
+                            HallID = 6,
+                            MaxNumberOfPlaces = 78,
+                            Name = "Elliot",
+                            Number = 6
                         });
                 });
 
@@ -135,7 +149,21 @@ namespace CENV_JMH.DA.Migrations
                             ShowingID = 4,
                             Name = "Just A Voice",
                             Picture_URL = "",
-                            TicketPrice = 219.99000000000001
+                            TicketPrice = 29.989999999999998
+                        },
+                        new
+                        {
+                            ShowingID = 5,
+                            Name = "Royal Plam Concert",
+                            Picture_URL = "",
+                            TicketPrice = 89.989999999999995
+                        },
+                        new
+                        {
+                            ShowingID = 6,
+                            Name = "Original Music Mantra",
+                            Picture_URL = "",
+                            TicketPrice = 69.989999999999995
                         });
                 });
 
@@ -171,6 +199,56 @@ namespace CENV_JMH.DA.Migrations
                     b.HasIndex("ShowingID");
 
                     b.ToTable("Showing_X_Hall");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Date = new DateTime(2023, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HallID = 2,
+                            SeatsSold = 1,
+                            ShowingID = 1
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Date = new DateTime(2023, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HallID = 2,
+                            SeatsSold = 2,
+                            ShowingID = 1
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Date = new DateTime(2023, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HallID = 3,
+                            SeatsSold = 123,
+                            ShowingID = 3
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Date = new DateTime(2023, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HallID = 4,
+                            SeatsSold = 272,
+                            ShowingID = 4
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Date = new DateTime(2023, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HallID = 5,
+                            SeatsSold = 165,
+                            ShowingID = 5
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HallID = 6,
+                            SeatsSold = 66,
+                            ShowingID = 6
+                        });
                 });
 
             modelBuilder.Entity("CENV_JMH.DO.Ticket", b =>

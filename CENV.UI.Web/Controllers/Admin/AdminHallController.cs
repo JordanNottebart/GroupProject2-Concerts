@@ -33,7 +33,7 @@ namespace CENV.UI.Web.Controllers.Admin
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit([FromServices] HallService hallService, int id, Hall hall, int number)
+        public async Task<IActionResult> Edit([FromServices] HallService hallService, int id, Hall hall, int number, int maxNumberOfPlaces)
         {
             // Check if the number is negative or zero
             if (number <= 0)
@@ -43,10 +43,10 @@ namespace CENV.UI.Web.Controllers.Admin
                 return View();
             }
 
-            // Check if the number already exists
-            if (hallService.IsNumberExists(number))
+            // Check if the number is negative or zero
+            if (maxNumberOfPlaces <= 0)
             {
-                ModelState.AddModelError("Number", "Number already exists. Please choose a different number.");
+                ModelState.AddModelError("MaxNumberOfPlaces", "Maximum number of places must be a positive integer greater than zero.");
                 // You can handle the error by returning a view with the validation errors
                 return View();
             }
@@ -73,10 +73,11 @@ namespace CENV.UI.Web.Controllers.Admin
                 return View();
             }
 
-            // Check if the number already exists
-            if (hallService.IsNumberExists(number))
+            // Check if the number is negative or zero
+            if (maxNumberOfPlaces <= 0)
             {
-                ModelState.AddModelError("Number", "Number already exists. Please choose a different number.");
+                ModelState.AddModelError("MaxNumberOfPlaces", "Maximum number of places must be a positive integer greater than zero.");
+                // You can handle the error by returning a view with the validation errors
                 return View();
             }
 

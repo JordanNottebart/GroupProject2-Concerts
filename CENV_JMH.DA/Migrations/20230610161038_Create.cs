@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace CENV_JMH.DA.Migrations
 {
     /// <inheritdoc />
-    public partial class AddToDb : Migration
+    public partial class Create : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,6 +59,7 @@ namespace CENV_JMH.DA.Migrations
                     Hall_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name_Hall = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Number_Hall = table.Column<int>(type: "int", nullable: false),
                     Max_Number_Places = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -237,6 +240,45 @@ namespace CENV_JMH.DA.Migrations
                         principalTable: "Showing_X_Hall",
                         principalColumn: "ReGex_ID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Hall_Table",
+                columns: new[] { "Hall_ID", "Max_Number_Places", "Name_Hall", "Number_Hall" },
+                values: new object[,]
+                {
+                    { 1, 12, "The Avenue", 1 },
+                    { 2, 123, "Atlantis", 2 },
+                    { 3, 99, "Lotus Lakes", 3 },
+                    { 4, 134, "The Arctic", 4 },
+                    { 5, 111, "Sapphire Palace", 5 },
+                    { 6, 78, "Elliot", 6 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Showing",
+                columns: new[] { "Showing_ID", "Name_Showing", "Picture_URL", "Ticket_Price" },
+                values: new object[,]
+                {
+                    { 1, "Mythical Music", "", 19.989999999999998 },
+                    { 2, "The X Sounds", "", 199.99000000000001 },
+                    { 3, "Dsss Trackk", "", 419.99000000000001 },
+                    { 4, "Just A Voice", "", 29.989999999999998 },
+                    { 5, "Royal Plam Concert", "", 89.989999999999995 },
+                    { 6, "Original Music Mantra", "", 69.989999999999995 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Showing_X_Hall",
+                columns: new[] { "ReGex_ID", "Date", "Hall_ID", "Number_of_Seats_Sold", "Showing_ID" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1, 1 },
+                    { 2, new DateTime(2023, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2, 1 },
+                    { 3, new DateTime(2023, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 123, 3 },
+                    { 4, new DateTime(2023, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 272, 4 },
+                    { 5, new DateTime(2023, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 165, 5 },
+                    { 6, new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, 66, 6 }
                 });
 
             migrationBuilder.CreateIndex(
