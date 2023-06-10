@@ -38,9 +38,57 @@ namespace CENV_JMH.DA
                    new Hall
                    { HallID = 3, Name = "Lotus Lakes", Number = 3, MaxNumberOfPlaces = 99 },
                    new Hall
-                   { HallID = 4, Name = "The Arctic", Number = 4, MaxNumberOfPlaces = 134 }
+                   { HallID = 4, Name = "The Arctic", Number = 4, MaxNumberOfPlaces = 134 },
+                   new Hall
+                   { HallID = 5, Name = "Sapphire Palace", Number = 5, MaxNumberOfPlaces = 111 },
+                   new Hall
+                   { HallID = 6, Name = "Elliot", Number = 6, MaxNumberOfPlaces = 78 }
+                   );
+
+            modelBuilder.Entity<Showing>().HasData(
+                   new Showing
+                   {
+                       ShowingID = 1,
+                       Name = "Mythical Music",
+                       TicketPrice = 19.99,
+                       Picture_URL = ""
+                   },
+                   new Showing
+                   {
+                       ShowingID = 2,
+                       Name = "The X Sounds",
+                       TicketPrice = 199.99,
+                       Picture_URL = ""
+                   },
+                   new Showing
+                   {
+                       ShowingID = 3,
+                       Name = "Dsss Trackk",
+                       TicketPrice = 419.99,
+                       Picture_URL = ""
+                   },
+                   new Showing
+                   {
+                       ShowingID = 4,
+                       Name = "Just A Voice",
+                       TicketPrice = 29.99,
+                       Picture_URL = ""
+                   },
+                   new Showing
+                   {
+                       ShowingID = 5,
+                       Name = "Royal Plam Concert",
+                       TicketPrice = 89.99,
+                       Picture_URL = ""
+                   },
+                   new Showing
+                   {
+                       ShowingID = 6,
+                       Name = "Original Music Mantra",
+                       TicketPrice = 69.99,
+                       Picture_URL = ""
+                   }
                    );
         }
-
     }
 }

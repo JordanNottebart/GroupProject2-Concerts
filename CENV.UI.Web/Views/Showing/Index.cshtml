@@ -16,18 +16,19 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr onclick="location.href='@Url.Action("Index", "ShowingDetail", new { id = item.ShowingID })'" style="cursor:pointer">
-            <td>
-                <img src="" alt="@item.Name"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketPrice)
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr onclick="location.href='@Url.Action("Index", "ShowingDetail", new { id = item.ShowingID })'" style="cursor:pointer">
+                <td>
+                    <img src="" alt="@item.Name" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketPrice) &euro;
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

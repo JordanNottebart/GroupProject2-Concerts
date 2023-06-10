@@ -4,6 +4,7 @@ using CENV_JMH.DA;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CENV_JMH.DA.Migrations
 {
     [DbContext(typeof(Repository))]
-    partial class RepositoryModelSnapshot : ModelSnapshot
+    [Migration("20230610094611_SeedShowingToDb")]
+    partial class SeedShowingToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,20 +79,6 @@ namespace CENV_JMH.DA.Migrations
                             MaxNumberOfPlaces = 134,
                             Name = "The Arctic",
                             Number = 4
-                        },
-                        new
-                        {
-                            HallID = 5,
-                            MaxNumberOfPlaces = 111,
-                            Name = "Sapphire Palace",
-                            Number = 5
-                        },
-                        new
-                        {
-                            HallID = 6,
-                            MaxNumberOfPlaces = 78,
-                            Name = "Elliot",
-                            Number = 6
                         });
                 });
 
@@ -146,21 +135,7 @@ namespace CENV_JMH.DA.Migrations
                             ShowingID = 4,
                             Name = "Just A Voice",
                             Picture_URL = "",
-                            TicketPrice = 29.989999999999998
-                        },
-                        new
-                        {
-                            ShowingID = 5,
-                            Name = "Royal Plam Concert",
-                            Picture_URL = "",
-                            TicketPrice = 89.989999999999995
-                        },
-                        new
-                        {
-                            ShowingID = 6,
-                            Name = "Original Music Mantra",
-                            Picture_URL = "",
-                            TicketPrice = 69.989999999999995
+                            TicketPrice = 219.99000000000001
                         });
                 });
 
