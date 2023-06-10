@@ -40,6 +40,11 @@ namespace CENV_JMH.Services
                 return returnArray;
             }
         }
+
+        /// <summary>
+        /// Retrieves a list of all showings.
+        /// </summary>
+        /// <returns>A list of showings.</returns>
         public List<Showing> GetShowings()
         {
             using (var repo = new Repository())
@@ -48,6 +53,11 @@ namespace CENV_JMH.Services
             }
         }
 
+        /// <summary>
+        /// Retrieves a showing by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the showing to retrieve.</param>
+        /// <returns>The showing with the specified ID, or a new empty showing if not found.</returns>
         public Showing GetShowingById(int id)
         {
             using (var repo = new Repository())
@@ -56,6 +66,12 @@ namespace CENV_JMH.Services
             }
         }
 
+        /// <summary>
+        /// Updates a showing with the specified ID and new show data.
+        /// </summary>
+        /// <param name="id">The ID of the showing to update.</param>
+        /// <param name="show">The updated showing data.</param>
+        /// <returns>The updated showing if found and updated, or null if not found.</returns>
         public Showing? UpdateShowing(int id, Showing show)
         {
             using (var repo = new Repository())
@@ -75,6 +91,9 @@ namespace CENV_JMH.Services
             }
         }
 
+        /// <summary>
+        /// Deletes a showing with the specified ID.
+        /// </summary
         public bool DeleteShowing(int id)
         {
             using (var repo = new Repository())
