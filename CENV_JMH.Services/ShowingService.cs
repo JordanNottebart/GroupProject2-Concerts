@@ -1,34 +1,35 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace CENV_JMH.Services
 {
     public class ShowingService
     {
-        public Showing[] GetHomeShowings(int aantalShowings)
+        public Showing[] GetHomeShowings(int amountOfShowings)
         {
             using (var repo = new Repository())
             {
-                var returnarray = new Showing[aantalShowings];
-                var x = repo.Showings.ToList();
+                var returnArray = new Showing[amountOfShowings];
+                var showings = repo.Showings.ToList();
 
-                if (x.Count < aantalShowings)
+                if (showings.Count < amountOfShowings)
                 {
-                    while (x.Count<aantalShowings)
+                    while (showings.Count<amountOfShowings)
                     {
-                        x.Add(new Showing());
+                        showings.Add(new Showing());
                     }
                 }
-                x.CopyTo(0, returnarray, 0, aantalShowings);
-                return returnarray;
+                showings.CopyTo(0, returnArray, 0, amountOfShowings);
+                return returnArray;
             }
         }
         public List<Showing> GetShowings()
         {
             using (var repo = new Repository())
             {
-                return repo.Showings.ToList();
+                return repo.Showings.Include(u => u.Hall).ToList();
             }
         }
 
@@ -48,7 +49,7 @@ namespace CENV_JMH.Services
 
                 if (showToUpdate != null)
                 {
-                    showToUpdate.Name = show.Name;
+                    showToUpdate.ShowingName = show.ShowingName;
                     showToUpdate.TicketPrice = show.TicketPrice;
                     showToUpdate.Picture_URL = show.Picture_URL;
                     repo.Update(showToUpdate);

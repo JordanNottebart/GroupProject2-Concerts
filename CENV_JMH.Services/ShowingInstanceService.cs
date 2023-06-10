@@ -4,6 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CENV_JMH.Services
 {
+    #region ShowingInstance Services
+    /// <summary>
+    /// This class encapsulates the logic for CRUD (Create, Read, Update and Delete) operations on
+    /// the "ShowingInstance" entity using a repository instance.
+    /// </summary>
+    #endregion
+
     public class ShowingInstanceService
     {
         public List<ShowingInstance> GetShowingInstance()
@@ -51,7 +58,6 @@ namespace CENV_JMH.Services
                 var todelete = repo.Details.FirstOrDefault(c => c.ID == id, null);
                 if (todelete != null)
                 {
-
                     repo.Details.Remove(todelete);
                     repo.SaveChanges();
                 }

@@ -4,6 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CENV_JMH.Services
 {
+    #region Hall Services
+    /// <summary>
+    /// This class encapsulates the logic for CRUD (Create, Read, Update and Delete) operations on
+    /// the "Hall" entity using a repository instance.
+    /// </summary>
+    #endregion
+
     public class HallService
     {
         public List<Hall> GetHalls()
@@ -30,7 +37,7 @@ namespace CENV_JMH.Services
 
                 if (hallToUpdate != null)
                 {
-                    hallToUpdate.Name = hall.Name;
+                    hallToUpdate.HallName = hall.HallName;
                     hallToUpdate.MaxNumberOfPlaces = hall.MaxNumberOfPlaces;
                     repo.Update(hallToUpdate);
                     repo.SaveChanges();
