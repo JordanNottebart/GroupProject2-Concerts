@@ -3,6 +3,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CENV_JMH.DO
 {
+    #region Showing
+    /// <summary>
+    /// "Showing" represents a table in a database, with properties corresponding to columns in the
+    ///  table.
+    /// </summary> 
+    #endregion
+
     [Table("Showing")]
     public class Showing
     {

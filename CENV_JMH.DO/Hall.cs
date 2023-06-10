@@ -5,6 +5,12 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace CENV_JMH.DO
 {
+    #region Hall
+    /// <summary>
+    /// "Hall" represents a table in a database, with properties corresponding to columns in the
+    ///  table.
+    /// </summary> 
+    #endregion
 
     [Table("Hall_Table")]
     public class Hall

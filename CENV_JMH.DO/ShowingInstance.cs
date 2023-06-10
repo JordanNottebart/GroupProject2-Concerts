@@ -8,14 +8,20 @@ using System.Threading.Tasks;
 
 namespace CENV_JMH.DO
 {
-    [Table("Showing_X_Hall")]
+    #region ShowingInstance
+    /// <summary>
+    /// "ShowingInstance" represents a showing instance in a system, with properties corresponding
+    /// to columns in the associated database table. It establishes relationships with the
+    /// "Showing" and "Hall" classes through foreign key properties.
+    /// </summary> 
+    #endregion
 
+    [Table("Showing_X_Hall")]
     public class ShowingInstance
     {
         [Key]
         [Column("ReGex_ID")]
         public int ID { get; set; }
-
 
         [ForeignKey(nameof(Showing))]
         [Column("Showing_ID")]
@@ -29,8 +35,8 @@ namespace CENV_JMH.DO
 
         [Column("Date")]
         public DateTime Date { get; set; }
+
         [Column("Number_of_Seats_Sold")]
         public int SeatsSold { get; set; }
-
     }
 }

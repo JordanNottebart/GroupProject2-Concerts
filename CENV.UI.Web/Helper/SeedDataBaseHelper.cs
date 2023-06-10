@@ -10,13 +10,12 @@ namespace CENV.UI.Web.Helper
             //Seed Roles
             var userManager = service.GetService<UserManager<IdentityUser>>();
             var roleManager = service.GetService<RoleManager<IdentityRole>>();
-            //add two roles
+            //Add two roles
             await roleManager.CreateAsync(new IdentityRole(Roles.Admin.ToString()));
             await roleManager.CreateAsync(new IdentityRole(Roles.User.ToString()));
 
 
-            // creating admin
-
+            // Creating admin
 
             var user = new IdentityUser
             {
@@ -34,7 +33,6 @@ namespace CENV.UI.Web.Helper
                 await userManager.CreateAsync(user, "Testing*123");
                 await userManager.AddToRoleAsync(user, Roles.Admin.ToString());
             }
-
         }
     }
 }
