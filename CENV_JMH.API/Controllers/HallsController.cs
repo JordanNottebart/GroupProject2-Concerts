@@ -89,9 +89,10 @@ namespace CENV_JMH.API.Controllers
             {
                 var createdHall = _hallService.CreateHall(new Hall
                 {
+                    Number = hall.Number,
                     Name = hall.Name,
                     MaxNumberOfPlaces = hall.MaxNumberOfPlaces,
-                    
+
                 });
                 return CreatedAtAction("GetById", new { id = createdHall.HallID }, createdHall);
             }

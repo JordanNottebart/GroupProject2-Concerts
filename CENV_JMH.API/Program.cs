@@ -30,6 +30,8 @@ builder.Services.AddIdentityCore<IdentityUser>(options =>
 // Add services to the Dependency Injection
 builder.Services.AddScoped<HallService>();
 builder.Services.AddScoped<ShowingService>();
+builder.Services.AddScoped<ShowingInstanceService>();
+builder.Services.AddScoped<TicketService>();
 builder.Services.AddScoped<JwtHelper>();
 
 // Add authentication

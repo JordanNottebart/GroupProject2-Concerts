@@ -9,13 +9,13 @@ namespace CENV_JMH.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UsersController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly JwtHelper _jwtHelper;
 
 
-        public UserController(UserManager<IdentityUser> userManager, JwtHelper jwtHelper)
+        public UsersController(UserManager<IdentityUser> userManager, JwtHelper jwtHelper)
         {
             _userManager = userManager;
             _jwtHelper = jwtHelper;

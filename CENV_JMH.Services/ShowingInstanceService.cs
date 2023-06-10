@@ -1,6 +1,7 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CENV_JMH.Services
 {
@@ -17,7 +18,7 @@ namespace CENV_JMH.Services
         {
             using (var repo = new Repository())
             {
-                return repo.Details.ToList();
+                return repo.Details.Include(instance => instance.Hall).Include(instance => instance.Showing).ToList();
             }
         }
 
@@ -25,7 +26,7 @@ namespace CENV_JMH.Services
         {
             using (var repo = new Repository())
             {
-                return repo.Details.Include(s => s.Hall).Include(u => u.Showing).FirstOrDefault(h => h.ID == id) ?? new ShowingInstance();
+                return repo.Details.Include(s => s.Hall).Include(instance => instance.Showing).FirstOrDefault(h => h.ID == id) ?? new ShowingInstance();
             }
         }
 
@@ -43,10 +44,32 @@ namespace CENV_JMH.Services
             {
                 repo.Details.Attach(showingDetail);
 
-                var e = repo.ChangeTracker.Entries().FirstOrDefault(c => c.Entity ==  showingDetail);
+                var e = repo.ChangeTracker.Entries().FirstOrDefault(c => c.Entity == showingDetail);
                 e.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
 
                 repo.SaveChanges();
+            }
+        }
+
+        public ShowingInstance? UpdateAndReturnShowingInstance(int id, ShowingInstance showingInstance)
+        {
+            using (var repo = new Repository())
+            {
+                var showingInstanceToUpdate = repo.Details.Where(instance => instance.ID == id).Include(instance => instance.Hall).Include(instance => instance.Showing).FirstOrDefault();
+
+                if (showingInstanceToUpdate != null)
+                {
+                    showingInstanceToUpdate.ShowingID = showingInstance.ShowingID;
+                    showingInstanceToUpdate.HallID = showingInstance.HallID;
+                    showingInstanceToUpdate.Date = showingInstance.Date;
+
+                    repo.Update(showingInstanceToUpdate);
+                    repo.SaveChanges();
+
+                    return showingInstanceToUpdate;
+                }
+
+                return null;
             }
         }
 
@@ -58,9 +81,28 @@ namespace CENV_JMH.Services
                 var todelete = repo.Details.FirstOrDefault(c => c.ID == id, null);
                 if (todelete != null)
                 {
+
                     repo.Details.Remove(todelete);
                     repo.SaveChanges();
                 }
+            }
+        }
+
+        public bool DeleteAndReturnBoolShowingInstance(int id)
+        {
+            using (var repo = new Repository())
+            {
+                var todelete = repo.Details.Include(instance => instance.Hall).Include(instance => instance.Showing).FirstOrDefault(instance => instance.ID == id);
+
+                if (todelete != null)
+                {
+                    repo.Details.Remove(todelete);
+                    repo.SaveChanges();
+
+                    return true;
+                }
+
+                return false;
             }
         }
 
@@ -70,6 +112,36 @@ namespace CENV_JMH.Services
             {
                 repo.Details.Add(instance);
                 repo.SaveChanges();
+            }
+        }
+
+        public ShowingInstance CreateAndReturnNewShowingInstance(ShowingInstance instance)
+        {
+            using (var repo = new Repository())
+            {
+                repo.Details.Add(instance);
+                repo.SaveChanges();
+
+                return instance;
+            }
+        }
+
+        public ShowingInstance? UpdateStartTime(int id, DateTime startTime)
+        {
+            using (var repo = new Repository())
+            {
+                var showingInstanceToUpdate = repo.Details.Where(instance => instance.ID == id).Include(instance => instance.Hall).Include(instance => instance.Showing).FirstOrDefault();
+
+                if (showingInstanceToUpdate != null)
+                {
+                    showingInstanceToUpdate.Date = startTime;
+
+                    repo.Update(showingInstanceToUpdate);
+                    repo.SaveChanges();
+
+                    return showingInstanceToUpdate;
+                }
+                return null;
             }
         }
     }
