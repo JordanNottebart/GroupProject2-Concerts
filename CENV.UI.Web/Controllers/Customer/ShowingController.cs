@@ -1,7 +1,7 @@
 ﻿using CENV_JMH.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CENV.UI.Web.Controllers
+namespace CENV.UI.Web.Controllers.Customer
 {
     public class ShowingController : Controller
     {

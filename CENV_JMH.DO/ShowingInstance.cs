@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -37,6 +38,7 @@ namespace CENV_JMH.DO
         public DateTime Date { get; set; }
 
         [Column("Number_of_Seats_Sold")]
+        [DisplayName("Seats Sold")]
         public int SeatsSold { get; set; }
     }
 }

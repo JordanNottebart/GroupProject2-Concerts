@@ -52,5 +52,4 @@ using (var scope = app.Services.CreateScope())
     await SeedDataBaseHelper.Seed(scope.ServiceProvider);
 }
 
-
 app.Run();

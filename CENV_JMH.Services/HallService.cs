@@ -73,6 +73,7 @@ namespace CENV_JMH.Services
             }
         }
 
+        // Used for HallsControllerAPI to change/update the maximum number of places in the Hall
         public Hall? UpdateMaxNumberOfPlaces(int id, int maxNumberOfPlaces)
         {
             using (var repo = new Repository())
@@ -89,6 +90,16 @@ namespace CENV_JMH.Services
                     return hallToUpdate;
                 }
                 return null;
+            }
+        }
+
+        // Check if Hall number exists if so choose something else, this check is used in
+        // AdminHallController for Edit and Create methods
+        public bool IsNumberExists(int number)
+        {
+            using (var repo = new Repository())
+            {
+                return repo.Halls.Any(h => h.Number == number);
             }
         }
     }

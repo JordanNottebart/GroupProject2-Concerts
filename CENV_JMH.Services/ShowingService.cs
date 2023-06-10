@@ -5,23 +5,38 @@ using System;
 
 namespace CENV_JMH.Services
 {
+    #region Showing Services
+    /// <summary>
+    /// This class encapsulates the logic for CRUD (Create, Read, Update and Delete) operations on
+    /// the "Showing" entity using a repository instance.
+    /// </summary>
+    #endregion
     public class ShowingService
     {
         public Showing[] GetHomeShowings(int amountOfShowings)
         {
             using (var repo = new Repository())
             {
+                // Create an array to hold the return values
                 var returnArray = new Showing[amountOfShowings];
+
+                // Retrieve all showi
                 var showings = repo.Showings.ToList();
 
+                // Check if the number of retrieved showings is less than the desired amount
                 if (showings.Count < amountOfShowings)
                 {
-                    while (showings.Count<amountOfShowings)
+                    // Add empty showings to the list until it reaches the desired amount
+                    while (showings.Count < amountOfShowings)
+                        while (showings.Count<amountOfShowings)
                     {
                         showings.Add(new Showing());
                     }
                 }
+                // Copy the desired number of showings to the return array
                 showings.CopyTo(0, returnArray, 0, amountOfShowings);
+
+                // Return the pupulated return array
                 return returnArray;
             }
         }

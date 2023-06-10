@@ -4,6 +4,7 @@ using CENV_JMH.DA;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CENV_JMH.DA.Migrations
 {
     [DbContext(typeof(Repository))]
-    partial class RepositoryModelSnapshot : ModelSnapshot
+    [Migration("20230610132036_SeedShowingInstanceToDb")]
+    partial class SeedShowingInstanceToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,7 +204,7 @@ namespace CENV_JMH.DA.Migrations
                         new
                         {
                             ID = 1,
-                            Date = new DateTime(2023, 1, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(168),
                             HallID = 2,
                             SeatsSold = 1,
                             ShowingID = 1
@@ -209,7 +212,7 @@ namespace CENV_JMH.DA.Migrations
                         new
                         {
                             ID = 2,
-                            Date = new DateTime(2023, 2, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(77),
                             HallID = 2,
                             SeatsSold = 2,
                             ShowingID = 1
@@ -217,7 +220,7 @@ namespace CENV_JMH.DA.Migrations
                         new
                         {
                             ID = 3,
-                            Date = new DateTime(2023, 3, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(48),
                             HallID = 3,
                             SeatsSold = 123,
                             ShowingID = 3
@@ -225,7 +228,7 @@ namespace CENV_JMH.DA.Migrations
                         new
                         {
                             ID = 4,
-                            Date = new DateTime(2023, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(15),
                             HallID = 4,
                             SeatsSold = 272,
                             ShowingID = 4
@@ -233,7 +236,7 @@ namespace CENV_JMH.DA.Migrations
                         new
                         {
                             ID = 5,
-                            Date = new DateTime(2023, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(8),
                             HallID = 5,
                             SeatsSold = 165,
                             ShowingID = 5
@@ -241,7 +244,7 @@ namespace CENV_JMH.DA.Migrations
                         new
                         {
                             ID = 6,
-                            Date = new DateTime(2023, 12, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(5),
                             HallID = 6,
                             SeatsSold = 66,
                             ShowingID = 6
