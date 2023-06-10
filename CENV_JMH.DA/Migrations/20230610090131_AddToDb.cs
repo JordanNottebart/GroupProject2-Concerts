@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CENV_JMH.DA.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateIdentitySchema : Migration
+    public partial class AddToDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,8 +56,8 @@ namespace CENV_JMH.DA.Migrations
                 {
                     Hall_ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Max_Number_Places = table.Column<int>(type: "int", nullable: false),
-                    Name_Hall = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name_Hall = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Max_Number_Places = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,8 +125,8 @@ namespace CENV_JMH.DA.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -170,8 +170,8 @@ namespace CENV_JMH.DA.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -210,6 +210,32 @@ namespace CENV_JMH.DA.Migrations
                         column: x => x.Showing_ID,
                         principalTable: "Showing",
                         principalColumn: "Showing_ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tickets",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    userId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    showingInstanceId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tickets", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Tickets_AspNetUsers_userId",
+                        column: x => x.userId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tickets_Showing_X_Hall_showingInstanceId",
+                        column: x => x.showingInstanceId,
+                        principalTable: "Showing_X_Hall",
+                        principalColumn: "ReGex_ID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -261,6 +287,16 @@ namespace CENV_JMH.DA.Migrations
                 name: "IX_Showing_X_Hall_Showing_ID",
                 table: "Showing_X_Hall",
                 column: "Showing_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_showingInstanceId",
+                table: "Tickets",
+                column: "showingInstanceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_userId",
+                table: "Tickets",
+                column: "userId");
         }
 
         /// <inheritdoc />
@@ -282,13 +318,16 @@ namespace CENV_JMH.DA.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Showing_X_Hall");
+                name: "Tickets");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Showing_X_Hall");
 
             migrationBuilder.DropTable(
                 name: "Hall_Table");

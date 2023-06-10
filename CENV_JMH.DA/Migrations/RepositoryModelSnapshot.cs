@@ -40,9 +40,43 @@ namespace CENV_JMH.DA.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Name_Hall");
 
+                    b.Property<int>("Number")
+                        .HasColumnType("int")
+                        .HasColumnName("Number_Hall");
+
                     b.HasKey("HallID");
 
                     b.ToTable("Hall_Table");
+
+                    b.HasData(
+                        new
+                        {
+                            HallID = 1,
+                            MaxNumberOfPlaces = 12,
+                            Name = "The Avenue",
+                            Number = 1
+                        },
+                        new
+                        {
+                            HallID = 2,
+                            MaxNumberOfPlaces = 123,
+                            Name = "Atlantis",
+                            Number = 2
+                        },
+                        new
+                        {
+                            HallID = 3,
+                            MaxNumberOfPlaces = 99,
+                            Name = "Lotus Lakes",
+                            Number = 3
+                        },
+                        new
+                        {
+                            HallID = 4,
+                            MaxNumberOfPlaces = 134,
+                            Name = "The Arctic",
+                            Number = 4
+                        });
                 });
 
             modelBuilder.Entity("CENV_JMH.DO.Showing", b =>
@@ -114,7 +148,7 @@ namespace CENV_JMH.DA.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("ShowingInstanceID")
+                    b.Property<int>("showingInstanceId")
                         .HasColumnType("int");
 
                     b.Property<string>("userId")
@@ -123,7 +157,7 @@ namespace CENV_JMH.DA.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("ShowingInstanceID");
+                    b.HasIndex("showingInstanceId");
 
                     b.HasIndex("userId");
 
@@ -275,10 +309,12 @@ namespace CENV_JMH.DA.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -315,10 +351,12 @@ namespace CENV_JMH.DA.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -349,9 +387,9 @@ namespace CENV_JMH.DA.Migrations
 
             modelBuilder.Entity("CENV_JMH.DO.Ticket", b =>
                 {
-                    b.HasOne("CENV_JMH.DO.ShowingInstance", "ShowingInstance")
+                    b.HasOne("CENV_JMH.DO.ShowingInstance", "showingInstance")
                         .WithMany()
-                        .HasForeignKey("ShowingInstanceID")
+                        .HasForeignKey("showingInstanceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -361,9 +399,9 @@ namespace CENV_JMH.DA.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ShowingInstance");
-
                     b.Navigation("User");
+
+                    b.Navigation("showingInstance");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
