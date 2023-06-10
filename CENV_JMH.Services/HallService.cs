@@ -37,7 +37,7 @@ namespace CENV_JMH.Services
 
                 if (hallToUpdate != null)
                 {
-                    hallToUpdate.HallName = hall.HallName;
+                    hallToUpdate.Name = hall.Name;
                     hallToUpdate.MaxNumberOfPlaces = hall.MaxNumberOfPlaces;
                     repo.Update(hallToUpdate);
                     repo.SaveChanges();

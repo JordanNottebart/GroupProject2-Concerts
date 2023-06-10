@@ -29,7 +29,7 @@ namespace CENV_JMH.Services
         {
             using (var repo = new Repository())
             {
-                return repo.Showings.Include(u => u.Hall).ToList();
+                return repo.Showings.ToList();
             }
         }
 
@@ -49,7 +49,7 @@ namespace CENV_JMH.Services
 
                 if (showToUpdate != null)
                 {
-                    showToUpdate.ShowingName = show.ShowingName;
+                    showToUpdate.Name = show.Name;
                     showToUpdate.TicketPrice = show.TicketPrice;
                     showToUpdate.Picture_URL = show.Picture_URL;
                     repo.Update(showToUpdate);
