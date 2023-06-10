@@ -38,7 +38,7 @@ namespace CENV.UI.Web.Controllers
                 await TryUpdateModelAsync(showingInstance);
                 service.UpdateShowingInstance(showingInstance);
             }
-            return RedirectToAction("Create?id=" + id);
+            return Redirect("/AdminShowingDetail/Index?id=" + showingID);
         }
     }
 }
