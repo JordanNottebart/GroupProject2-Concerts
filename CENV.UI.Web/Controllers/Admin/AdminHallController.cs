@@ -11,6 +11,7 @@ namespace CENV.UI.Web.Controllers.Admin
     /// The TicketService class provides methods to retrieve and manipulate ticket data. (CRUD)
     /// </summary> 
     #endregion
+
     public class AdminHallController : Controller
     {
         public IActionResult Index([FromServices] HallService hallService)
