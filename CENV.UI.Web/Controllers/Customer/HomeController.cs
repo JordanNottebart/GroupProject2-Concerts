@@ -4,7 +4,7 @@ using CENV_JMH.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace CENV.UI.Web.Controllers
+namespace CENV.UI.Web.Controllers.Customer
 {
     public class HomeController : Controller
     {

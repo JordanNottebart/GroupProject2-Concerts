@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>List of Showings</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,6 +12,7 @@
 <table class="table">
     <thead>
         <tr>
+
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -22,19 +23,20 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr  onclick="location.href='AdminShowingDetail/Index?id=' + @item.ShowingID" style="cursor : pointer">
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TicketPrice)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ShowingID">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.ShowingID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr onclick="location.href='AdminShowingDetail/Index?id=' + @item.ShowingID" style="cursor : pointer">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TicketPrice) &euro;
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ShowingID">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ShowingID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

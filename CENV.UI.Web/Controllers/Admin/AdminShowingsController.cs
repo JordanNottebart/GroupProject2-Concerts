@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace CENV.UI.Web.Controllers
+namespace CENV.UI.Web.Controllers.Admin
 {
     public class AdminShowingsController : Controller
     {
@@ -14,16 +14,10 @@ namespace CENV.UI.Web.Controllers
         {
             _webHostEnvironment = webHostEnvironment;
         }
-        public ActionResult Index([FromServices] ShowingService service)
+        public IActionResult Index([FromServices] ShowingService service)
         {
-            
-            return View(service.GetShowings().ToList());
-        }
 
-        public ActionResult Details([FromServices] ShowingService service, int id)
-        {
-            Showing model = service.GetShowingById(id);
-            return View(model);
+            return View(service.GetShowings().ToList());
         }
 
         [HttpGet]
@@ -32,9 +26,8 @@ namespace CENV.UI.Web.Controllers
             return View(new Showing());
         }
 
-
         [HttpPost]
-        public ActionResult Create([FromServices] ShowingService service, int id, string name, double ticketPrice, string? picture_URL)
+        public IActionResult Create([FromServices] ShowingService service, int id, string name, double ticketPrice, string? picture_URL)
         {
             Showing newShow = new Showing();
             newShow.ShowingID = id;
@@ -54,7 +47,7 @@ namespace CENV.UI.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit([FromServices] ShowingService service, int id)
+        public async Task<IActionResult> Edit([FromServices] ShowingService service, int id)
         {
 
             var model = service.GetShowingById(id);
@@ -70,7 +63,7 @@ namespace CENV.UI.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete([FromServices] ShowingService service, int id)
+        public IActionResult Delete([FromServices] ShowingService service, int id)
         {
             service.DeleteShowing(id);
 

@@ -3,7 +3,7 @@ using CENV_JMH.DO;
 using CENV_JMH.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CENV.UI.Web.Controllers
+namespace CENV.UI.Web.Controllers.Admin
 {
     public class AdminShowingInstanceController : Controller
     {
@@ -26,7 +26,6 @@ namespace CENV.UI.Web.Controllers
             showingInstance.Date = DateTime.Now.Date;
             return View(showingInstance);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromServices] ShowingInstanceService service, int id, int showingID, int hallID, DateTime date, int seatsSold)

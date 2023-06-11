@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CENV_JMH.DO
@@ -16,12 +17,17 @@ namespace CENV_JMH.DO
         [Key]
         [Column("Showing_ID")]
         public int ShowingID { get; set; }
+
+        [DisplayName("Showing Name")]
         [Column("Name_Showing")]
         public string Name { get; set; }
 
         [Column("Ticket_Price")]
+        [DisplayName("Ticket Price")]
         public double TicketPrice { get; set; }
+
         [Column("Picture_URL")]
+        [DisplayName("Image")]
         public string? Picture_URL { get; set; }
     }
 }
