@@ -3,7 +3,7 @@ using CENV_JMH.DO;
 using CENV_JMH.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CENV.UI.Web.Controllers
+namespace CENV.UI.Web.Controllers.Admin
 {
     public class AdminShowingInstanceController : Controller
     {

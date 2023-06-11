@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace CENV.UI.Web.Controllers
+namespace CENV.UI.Web.Controllers.Customer
 {
     [Authorize]
     public class TicketController : Controller
@@ -14,8 +14,8 @@ namespace CENV.UI.Web.Controllers
         private ShowingInstanceService _ShowingInstanceService;
         public TicketController([FromServices] TicketService service, [FromServices] ShowingInstanceService siservice)
         {
-            this._TicketService = service;
-            this._ShowingInstanceService = siservice;
+            _TicketService = service;
+            _ShowingInstanceService = siservice;
         }
 
         [HttpGet]

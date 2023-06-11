@@ -2,9 +2,9 @@
 using CENV_JMH.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CENV.UI.Web.Controllers
+namespace CENV.UI.Web.Controllers.Admin
 {
-    public class ShowingDetailController : Controller
+    public class AdminShowingDetailController : Controller
     {
         public IActionResult Index([FromServices] ShowingInstanceService instanceservice, [FromServices] ShowingService showingService, int id)
         {

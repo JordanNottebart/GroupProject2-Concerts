@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace CENV.UI.Web.Controllers
+namespace CENV.UI.Web.Controllers.Admin
 {
     public class AdminShowingsController : Controller
     {
@@ -16,7 +16,7 @@ namespace CENV.UI.Web.Controllers
         }
         public ActionResult Index([FromServices] ShowingService service)
         {
-            
+
             return View(service.GetShowings().ToList());
         }
 
