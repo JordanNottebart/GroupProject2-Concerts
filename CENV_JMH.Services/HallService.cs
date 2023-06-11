@@ -73,6 +73,7 @@ namespace CENV_JMH.Services
             }
         }
 
+        // Used for HallsControllerAPI to change/update the maximum number of places in the Hall
         public Hall? UpdateMaxNumberOfPlaces(int id, int maxNumberOfPlaces)
         {
             using (var repo = new Repository())
