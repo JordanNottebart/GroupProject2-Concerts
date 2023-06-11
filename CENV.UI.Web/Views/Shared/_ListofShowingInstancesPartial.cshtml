@@ -1,30 +1,49 @@
 ﻿@model IEnumerable<CENV_JMH.DO.ShowingInstance>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                Places left
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr >
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @(item.Hall.MaxNumberOfPlaces - item.SeatsSold)
-            </td>
-            <td>
-            <a asp-action="BuyTickets" asp-controller="Ticket"  asp-route-id="@item.ID">Buy Ticket</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div style="display: flex; align-items: flex-start;">
+    <div style="flex: 1;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Date)
+                    </th>
+                    <th>
+                        Places left
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @if (item.Hall.MaxNumberOfPlaces - item.SeatsSold > 0)
+                            {
+                                @(item.Hall.MaxNumberOfPlaces - item.SeatsSold)
+                            }
+                            else
+                            {
+                                <span class="text-danger">Sold Out</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Hall.MaxNumberOfPlaces - item.SeatsSold > 0)
+                            {
+                                <a asp-action="BuyTickets" asp-controller="Ticket" asp-route-id="@item.ID">Buy Ticket</a>
+                            }
+                            else
+                            {
+                                <span class="text-danger">Sold Out</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

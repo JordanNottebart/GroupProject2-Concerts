@@ -5,30 +5,23 @@
     }
 </style>
 
-
-<div class="container text-center" style="width:960px; height: 650px;">
-    <div class="row" style="Width:100%; height: 50%">
-
-        <div class="col-6" style="Height:100%;Width:50%;">
+<div class="container">
+    <div class="row row-cols-2">
+        <div class="col">
             <img src="@Model.TheShow.Picture_URL" alt="De foto" style="width:220px; height:320px" />
         </div>
 
-        <div class="col-6" style="Height:100%;Width:50%;">
+        <div class="col">
             <h3>Discription</h3>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eros augue, tristique in blandit sed, faucibus vel lacus. Quisque consequat orci et est convallis facilisis. Fusce varius vitae elit sed euismod. Vivamus quis orci vel est ultricies pretium. Aliquam eu dapibus velit. Praesent ultricies accumsan mollis. Aliquam at sapien id tortor sollicitudin imperdiet. Proin vitae pretium dui. Donec id nisi sit amet orci imperdiet tristique.
-
-            Quisque facilisis magna ipsum, ac molestie elit dignissim eget.
-
-        </div>
-    </div>
-    <div class="row" style="width:100%;height:50%;">
-
-        <div class="col-6" style="Height:100%;Width:50%;">
-            <partial>@Html.Partial("_ExtraInfoPartial",@Model.TheShow)</partial>
         </div>
 
-        <div class="col-6" style="Height:100%;Width:50%;">
-            <partial>@Html.Partial("_ListofShowingInstancesPartial",@Model.TheInstances)</partial>
+        <div class="col">
+            <partial>@Html.Partial("_ExtraInfoPartial", @Model.TheShow)</partial>
+        </div>
+
+        <div class="col">
+            <partial>@Html.Partial("_ListofShowingInstancesPartial", @Model.TheInstances)</partial>
         </div>
     </div>
 </div>
