@@ -14,7 +14,6 @@ namespace CENV.UI.Web.Controllers.Admin
             return View(showingInstance);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromServices] ShowingInstanceService service, int id, int showingID, int hallID, DateTime date, int seatsSold)
         {

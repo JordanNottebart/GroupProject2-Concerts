@@ -20,12 +20,6 @@ namespace CENV.UI.Web.Controllers.Admin
             return View(hall);
         }
 
-        public IActionResult Details([FromServices] HallService hallService, int id)
-        {
-            var hall = hallService.GetHallById(id);
-            return View(hall);
-        }
-
         [HttpGet]
         public IActionResult Edit([FromServices] HallService hallService, int id)
         {
