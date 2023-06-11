@@ -7,10 +7,23 @@ namespace CENV.UI.Web.Controllers
 {
     public class AdminShowingInstanceController : Controller
     {
+        private readonly ShowingService _showingService;
+        private readonly HallService _hallService;
+
+        public AdminShowingInstanceController(ShowingService showingService, HallService hallService)
+        {
+            _hallService= hallService;
+            _showingService = showingService;
+        }
+
         [HttpGet]
         public IActionResult CreateAsync([FromServices] ShowingInstanceService service, int id)
         {
             ShowingInstance showingInstance = service.GetShowingInstanceById(id);
+            ViewBag.Showings = _showingService.GetShowings();
+            ViewBag.Halls = _hallService.GetHalls();
+            ViewBag.Instances = service.GetShowingInstance();
+            showingInstance.Date = DateTime.Now.Date;
             return View(showingInstance);
         }
 

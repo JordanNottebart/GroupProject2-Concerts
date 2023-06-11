@@ -13,18 +13,36 @@
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ID" class="control-label"></label>
-                <input asp-for="ID" class="form-control" />
+                <label asp-for="ID" class="control-label">Create a new Showing Instance or Update an existing one</label>
+                <select asp-for="ID" class="form-control">
+                    <option value="0">Create new Showing Instance</option>
+                    @foreach (var instance in ViewBag.Instances)
+                    {
+                        <option value="@instance.ID">@instance.Showing.Name in @instance.Hall.Name for @instance.Date</option>
+                    }
+                </select>
                 <span asp-validation-for="ID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ShowingID" class="control-label"></label>
-                <input asp-for="ShowingID" class="form-control" />
+                <label asp-for="ShowingID" class="control-label">Showing</label>
+                <select asp-for="ShowingID" class="form-control">
+                    <option value="0" disabled>Select a showing</option>
+                        @foreach (var showing in ViewBag.Showings)
+                        {
+                            <option value="@showing.ShowingID">@showing.Name</option>
+                        }
+                </select>
                 <span asp-validation-for="ShowingID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HallID" class="control-label"></label>
-                <input asp-for="HallID" class="form-control" />
+                <label asp-for="HallID" class="control-label">Hall</label>
+                <select asp-for="HallID" class="form-control">
+                    <option value="0" disabled>Select a hall</option>
+                        @foreach (var hall in ViewBag.Halls)
+                        {
+                            <option value="@hall.HallID">@hall.Name (@hall.MaxNumberOfPlaces)</option>
+                        }
+                </select>
                 <span asp-validation-for="HallID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,7 +52,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="SeatsSold" class="control-label"></label>
-                <input asp-for="SeatsSold" class="form-control" />
+                <input asp-for="SeatsSold" class="form-control" min="0"/>
                 <span asp-validation-for="SeatsSold" class="text-danger"></span>
             </div>
             <div class="form-group">
