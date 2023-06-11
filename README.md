@@ -11,100 +11,100 @@ exists of 5 projects.
 
 Frontend
 
-	- De frontend is verantwoordelijk voor het tonen van inhoud, het opslaan van gebruikersinvoer en communicatie met de backend om gegevens op te halen of te verzenden.
+	- The frontend is responsible for displaying content, storing user input, and communicating with the backend to fetch or send data.
 
 
-Gebruikte technologieën
+Used Technologies
 
 	- HTML/CSS
 
 
 Tutorial
 
-	- Beginscherm
-		- Op het beginscherm kunt u eerst en vooral de taakbalk bovenaan vinden.
-			- Knop "Home":
-				- Deze knop brengt je terug naar het beginscherm met de uitgelichte shows.
-			- Knop "Show":
-				- Hier vindt u alle shows in een lijst terug.
-					- De shows hebben een naam en een prijs
-						- Als u op een show klikt komt u terecht op het detail van de show
-							- Hier kunt u de omschrijving lezen en een ticket kopen voor een show op een bepaalde datum en tijdstip
-								- Als u op "Buy Ticket" klikt, moet u u eerst inloggen of registreren daarna krijg je de optie om een ticket te kopen voor deze show op het gekozen tijdstip
-									- Als u uw ticket bevestigt, dan krijg je al uw tickets te zien die u al heeft aangekocht
-			- Knop "My Tickets":
-				- Als u bent ingelogd of geregistreerd bent, kan u hier al uw reeds aangekochte tickets zien met daarbij de datum, de show en de zaal waar deze zich bevindt
-			- Knop "Register"
-				- Hier kan u zich registreren mocht het zijn dat u nog geen account hebt
-					- Vul hier een mail adres in en kies een sterk wachtwoord
-			- Knop "Login"
-				- Hier kan u zich inloggen als u al een account heeft
-		- Op het beginscherm zijn er ook uitgelichte show te zien, deze zijn de meest populaire shows op dit moment.
-			- Als u op een show klikt komt u terecht op het detail van deze show
+	- Home Screen
+		- On the home screen, you can find the navigation bar at the top.
+			- "Home" button:
+				- This button takes you back to the home screen with the featured shows.
+			- "Show" button:
+				- Here you can find a list of shows.
+					- The shows have a name and a price.
+						- Clicking on a show takes you to the show detail page.
+							- Here you can read the description and buy a ticket for a show on a specific date and time.
+								- If you click "Buy Ticket," you need to log in or register first, and then you'll have the option to buy a ticket for that show at the chosen time.
+									- When you confirm your ticket, you'll see all the tickets you have purchased so far.
+			- "My Tickets" button:
+				- If you are logged in or registered, you can see all your purchased tickets here, including the date, show, and venue.
+			- "Register" button:
+				- Here you can register if you don't have an account yet.
+					- Enter an email address and choose a strong password.
+			- "Login" button:
+				- Here you can log in if you already have an account.
+		- The home screen also features highlighted shows, which are the most popular shows at the moment.
+			- Clicking on a show takes you to its detail page.
 
 
 Controllers
 	
 	- AdminHallController
 		- Index
-			- Toont een lijst van hallen op de weergave.
+			- Displays a list of halls in the view.
 		- Edit
-			- Bewerkt een specifieke hal op basis van het meegegeven id.
+			- Edits a specific hall based on the provided ID.
 		- Create
-			- Maakt een nieuwe hal aan met de gegeven parameters.
+			- Creates a new hall with the given parameters.
 		- Delete
-			- Verwijdert een hal op basis van het meegegeven id.
+			- Deletes a hall based on the provided ID.
 
 	- AdminShowingDetailController
 		- Index
-		 - Haalt de voorstelling en de bijbehorende exemplaren op en geeft deze door aan de weergave.
+		 - Retrieves the show and its associated instances and passes them to the view.
 
 	- AdminShowingInstanceController
 		- CreateAsync (GET)
-			- Haalt een specifieke voorstellingsinstantie op en verzamelt de benodigde gegevens voor de weergave.
+			- Retrieves a specific showing instance and gathers the necessary data for the view.
 		- CreateAsync 'POST)
-			- Maakt een nieuwe voorstellingsinstantie aan of werkt een bestaande bij. De benodigde gegevens worden ontvangen en verwerkt.
+			- Creates a new showing instance or updates an existing one. Receives and processes the required data.
 
 	- AdminShowingsController
 		- Index
-			- Haalt alle voorstellingen op via de ShowingService en geeft ze door aan de weergave.
+			- Retrieves all showings via the ShowingService and passes them to the view.
 		- Create (GET)
-			- Geeft een leeg Showing-object door aan de weergave voor het maken van een nieuwe voorstelling.
+			- Passes an empty Showing object to the view for creating a new show.
 		- Create (POST)
-			- Maakt een nieuwe voorstelling aan met de opgegeven gegevens en voegt deze toe via de ShowingService. 
-				De gebruiker wordt omgeleid naar de "Index" actie.
+			- Creates a new show with the provided data and adds it via the ShowingService.
+				The user is redirected to the "Index" action.
 		- Edit (GET)
-			- Haalt een specifieke voorstelling op via de ShowingService en geeft deze door aan de weergave voor bewerking.
+			- Retrieves a specific show via the ShowingService and passes it to the view for editing.
 		- Edit (POST)
-			- Werkt een bestaande voorstelling bij met de ontvangen gegevens via de TryUpdateModelAsync-methode en slaat de wijzigingen op via de ShowingService. 
-				De gebruiker wordt omgeleid naar de "Index" actie.
+			- Updates an existing show with the received data using the TryUpdateModelAsync method and saves the changes via the ShowingService.
+				The user is redirected to the "Index" action.
 		- Delete (GET)
-			- Haalt een specifieke voorstelling op via de ShowingService en geeft deze door aan de weergave voor bevestiging van verwijdering.
+			- Retrieves a specific show via the ShowingService and passes it to the view for deletion confirmation.
 		- Delete (POST)
-			- Verwijdert een voorstelling via de ShowingService. De gebruiker wordt omgeleid naar de "Index" actie.
+			- Deletes a show via the ShowingService. The user is redirected to the "Index" action.
 
 	- HomeController
 		- Index
-			- Haalt de startpagina-voorstellingsgegevens op via de ShowingService en geeft deze door aan de weergave.
+			- Retrieves the homepage show data via the ShowingService and passes it to the view.
 		- Privacy
-			- Geeft de privacy-pagina-weergave terug.
+			- Returns the privacy page view.
 		- Error	
-			- Geeft de foutpagina-weergave terug, met een ErrorViewModel dat het unieke RequestId van de huidige aanvraag bevat.
+			- Returns the error page view, including an ErrorViewModel containing the unique RequestId of the current request.
 
 	- ShowingController
 		- Index
-			- Haalt alle voorstellingen op via de ShowingService en geeft ze door aan de weergave.
+			- Retrieves all shows via the ShowingService and passes them to the view.
 
 	- ShowingDetailController
 		- Index
-			- Haalt de details van een specifieke voorstelling op via de ShowingService en de bijbehorende voorstellingsexemplaren via de ShowingInstanceService.
-				- De opgehaalde gegevens worden samengevoegd in een ShowDetailModel en doorgegeven aan de weergave.
+			- Retrieves the details of a specific show via the ShowingService and the associated showing instances via the ShowingInstanceService.
+				- The retrieved data is combined into a ShowDetailModel and passed to the view.
 
 	- TicketController
 		- Index
-			- Haalt de tickets op voor de huidige gebruiker en geeft ze door aan de weergave.
+			- Retrieves the tickets for the current user and passes them to the view.
 		- BuyTickets (GET)
-			- Haalt de details van een specifiek voorstellingsexemplaar op via de ShowingInstanceService en geeft ze door aan de weergave.
+			- Retrieves the details of a specific showing instance via the ShowingInstanceService and passes them to the view.
 		- BuyTickets (POST)
-			- Verwerkt het koopverzoek voor een ticket. Controleert of er nog plaatsen beschikbaar zijn voor het voorstellingsexemplaar en maakt vervolgens een nieuw ticket aan via de TicketService. 
-				Het aantal verkochte plaatsen en de relevante informatie worden bijgewerkt. Na voltooiing wordt de gebruiker omgeleid naar de Index-actie.
+			- Handles the ticket purchase request. Checks if there are still seats available for the showing instance and creates a new ticket via the TicketService.
+				The number of seats sold and relevant information are updated. Upon completion, the user is redirected to the Index action.
