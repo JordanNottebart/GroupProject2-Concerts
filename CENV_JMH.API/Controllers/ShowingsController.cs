@@ -6,6 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CENV_JMH.API.Controllers
 {
+    #region API ShowingsController
+    /// <summary>
+    /// This controller provides a RESTful API for managing showings, including retrieving showing
+    /// information from database, creating new showings, updating existing showings and deleting
+    /// showings.
+    /// </summary>
+    ///
+    #endregion
+
     [Route("api/[controller]")]
     [ApiController]
     public class ShowingsController : ControllerBase

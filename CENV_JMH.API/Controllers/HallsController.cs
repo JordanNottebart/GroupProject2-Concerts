@@ -1,13 +1,18 @@
 ﻿using CENV_JMH.API.Dto;
 using CENV_JMH.DO;
 using CENV_JMH.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 
 namespace CENV_JMH.API.Controllers
 {
+    #region API HallController
+    /// <summary>
+    /// This controller provides a RESTful API for managing halls, including retrieving hall
+    /// information from database, creating new halls, updating existing halls and deleting halls.
+    /// </summary>
+    ///
+    #endregion
+
     [Route("api/[controller]")]
     [ApiController]
     public class HallsController : ControllerBase
