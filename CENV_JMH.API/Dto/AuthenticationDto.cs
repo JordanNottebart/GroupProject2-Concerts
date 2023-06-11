@@ -2,7 +2,7 @@
 
 namespace CENV_JMH.API.Dto
 {
-    public class AuthDto
+    public class AuthenticationDto
     {
         [Required]
         public string UserName { get; set; }

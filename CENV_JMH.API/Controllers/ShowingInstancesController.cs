@@ -6,6 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CENV_JMH.API.Controllers
 {
+    #region API ShowingInstancesController
+    /// <summary>
+    /// This controller provides a RESTful API for managing showing instances, including retrieving
+    /// showing instances information from database, creating new showing instances, updating
+    /// existing showing instances and deleting showing instances.
+    /// </summary>
+    ///
+    #endregion
+
     [Route("api/[controller]")]
     [ApiController]
     public class ShowingInstancesController : ControllerBase

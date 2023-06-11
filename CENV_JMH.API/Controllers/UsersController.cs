@@ -1,12 +1,18 @@
 ﻿using CENV_JMH.API.Dto;
 using CENV_JMH.API.Helper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace CENV_JMH.API.Controllers
 {
+    #region API UsersController
+    /// <summary>
+    /// This controller provides a RESTful API for managing users, including retrieving user
+    /// information from database, creating new users, updating existing users and deleting users.
+    /// </summary>
+    ///
+    #endregion
+
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -70,7 +76,7 @@ namespace CENV_JMH.API.Controllers
 
         // POST: api/Users/BearerToken
         [HttpPost("authenticate")]
-        public async Task<ActionResult<AuthResDto>> CreateBearerToken(AuthDto request)
+        public async Task<ActionResult<AuthrizationDto>> CreateBearerToken(AuthenticationDto request)
         {
             if (!ModelState.IsValid)
             {

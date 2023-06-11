@@ -1,7 +1,5 @@
 ﻿using CENV_JMH.DA;
 using CENV_JMH.DO;
-using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace CENV_JMH.Services
 {
