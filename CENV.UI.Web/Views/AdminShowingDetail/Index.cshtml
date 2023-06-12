@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in Model.TheInstances)
+                    @foreach (var item in Model.TheInstances.OrderBy(i => i.Date))
                     {
                         <tr style="cursor : pointer" onclick="location.href='/AdminShowingInstance/Create?id=' + @item.ID">
                             @*Werkt nog niet error 404 zet AdminShowingInstance/CreateAsync?id=id na AdminShowingDetail/*@
