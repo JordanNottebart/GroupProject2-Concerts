@@ -21,7 +21,7 @@ namespace CENV_JMH.DA
             base.OnConfiguring(optionsBuilder);
 
             //  Configure the connection string for the database
-            optionsBuilder.UseSqlServer(@"Data Source = vdo2023.database.windows.net; Initial Catalog = kmj; User ID = CloudSA445f05b6; Password = goodluck23!");
+            optionsBuilder.UseSqlServer(@"Data Source=.\sqlexpress;Initial Catalog=CENV_JHM;Integrated Security=True;Trust Server Certificate=True");
         }
     }
 }

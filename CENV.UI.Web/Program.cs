@@ -8,7 +8,7 @@ using CENV_JMH.DA;
 using CENV.UI.Web.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("RepositoryConnection") ?? throw new InvalidOperationException("Connection string 'RepositoryConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DBconection") ?? throw new InvalidOperationException("Connection string 'RepositoryConnection' not found.");
 
 builder.Services.AddDbContext<Repository>(options => options.UseSqlServer(connectionString));
 

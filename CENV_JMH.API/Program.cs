@@ -16,7 +16,7 @@ builder.Services.AddControllers();
 
 // Injection of Repository
 builder.Services.AddDbContext<Repository>(options => options.UseSqlServer
-(builder.Configuration.GetConnectionString("RepositoryConnection")));
+(builder.Configuration.GetConnectionString("DBconection")));
 
 // Use Identity Core with Identityuser (standard user)
 builder.Services.AddIdentityCore<IdentityUser>(options =>
